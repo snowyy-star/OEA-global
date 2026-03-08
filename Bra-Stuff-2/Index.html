@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>OEA Global | Olufemi Emmanuel Akindele Global</title>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+
+/*  Default: Light Mode will change as the user switches */
+:root {
+  --primary-color: #0066FF;
+  --secondary-color: #FF4D6D;
+  --accent-color: #00D4AA;
+  --text-dark: #1A1D29;
+  --text-light: #5A5F7D;
+  --extra-light: #F7F9FC;
+  --white: #FFFFFF;
+  --background: #FFFFFF;
+  --surface: #F0F4FF;
+  --border: #E2E8F0;
+  --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+  --gradient-secondary: linear-gradient(135deg, #FF4D6D 0%, #FF8E4F 100%);
+  --max-width: 1200px;
+}
+
+/* ===== Dark Mode: System Preference as requested */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #4DA6FF;
+    --secondary-color: #FF6B8A;
+    --accent-color: #33E0C9;
+    --text-dark: #E2E8F0;
+    --text-light: #94A3B8;
+    --extra-light: #1A223D;
+    --white: #1A223D;
+    --background: #0F1425;
+    --surface: #1E293B;
+    --border: #2D3748;
+    --gradient-primary: linear-gradient(135deg, #4DA6FF 0%, #33E0C9 100%);
+    --gradient-secondary: linear-gradient(135deg, #FF6B8A 0%, #FFA27A 100%);
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-dark);
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.btn {
+  padding: 0.875rem 2rem;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  white-space: nowrap;
+  color: var(--white);
+  background: var(--gradient-primary);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 102, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-accent {
+  background: var(--gradient-secondary);
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.2);
+}
+
+.btn-accent:hover {
+  box-shadow: 0 8px 25px rgba(255, 77, 109, 0.3);
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+ul {
+  list-style: none;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+/* ===== Navigation ===== */
+/* Navigation Base */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+/* ===== Mobile Navigation Panel ===== */
+@media (max-width: 768px) {
+  .nav__links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen  because on screen it looks weird*/
+    width: 300px;
+    height: 100vh;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 6rem 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid var(--border);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    list-style: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .nav__links {
+      background: rgba(15, 20, 37, 0.95);
+      border-left: 1px solid var(--border);
+    }
+  }
+
+  .nav__links.open {
+    right: 0; /* Slide in */
+  }
+
+  .nav__links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 102, 255, 0.05);
+    transition: background 0.2s ease;
+  }
+
+  .nav__links a:hover {
+    background: rgba(0, 102, 255, 0.1);
+    transform: translateX(-5px);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  nav {
+    background: rgba(15, 20, 37, 0.95);
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.nav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes hamburger to right (The 'X' still kind of showing but on desktop the X completely disappers) */
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.nav__logo img {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Hamburger: visible only on mobile retractable */
+.nav__menu__btn {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Nav links: hidden by default (mobile) */
+.nav__links {
+  display: none;
+}
+
+/* CTA button: hidden on mobile view */
+.nav__btns {
+  display: none;
+}
+
+/*  Desktop Styles (769px and up if any lower or higher it'll produce an error for some reason) */
+@media (min-width: 769px) {
+  .nav__header {
+    width: auto;
+  }
+
+  /* Hide hamburger on desktop */
+  .nav__menu__btn {
+    display: none !important;
+  }
+
+  /* Show nav links in a row */
+  .nav__links {
+    display: flex !important;
+    align-items: center;
+    gap: 6.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav__links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: color 0.2s ease;
+  }
+
+  .nav__links a:hover {
+    color: var(--primary-color);
+  }
+
+  /* Show CTA button */
+  .nav__btns {
+    display: block;
+    margin-left: auto; /* Push to far right */
+  }
+
+  .nav__btns .btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Rest of your sections is unhanged cause no bugs seen */
+.section__container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 6rem 1rem;
+}
+
+.section__header {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.section__subheader {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-dark); /* Changed from var(--text-light) */
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.section__description {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.header__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  overflow: hidden;
+  background-color: var(--background);
+  padding-top: 8rem;
+  position: relative;
+}
+
+.header__content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header__content h1 {
+  margin-bottom: 1.5rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .header__content h1 {
+    font-size: 4.5rem;
+  }
+}
+
+.header__content h1 span {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header__content .section__description {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header__btns {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.problem {
+  background-color: var(--extra-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.problem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230066ff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.problem__content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.problem__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .problem__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.problem__item {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--secondary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.problem__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.problem__item h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.problem__item h4 i {
+  color: var(--secondary-color);
+}
+
+.what-we-do {
+  background-color: var(--background);
+}
+
+.what-we-do__content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.what-we-do__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .what-we-do__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.what-we-do__card {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.what-we-do__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+.what-we-do__card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.what-we-do__card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.what-we-do__card p {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+.what-we-do__features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.what-we-do__feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.what-we-do__feature i {
+  color: var(--accent-color);
+  font-size: 1.25rem;
+}
+
+.program {
+  background: var(--gradient-primary);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.program::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.program .section__header,
+.program .section__description {
+  color: white;
+}
+
+.program__content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.program__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.program__feature {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.program__feature:hover {
+  transform: translateY(-5px);
+}
+
+.program__feature i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.program__feature h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.clients__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.client__card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.client__card:hover {
+  transform: translateY(-5px);
+}
+
+.client__card i {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.client__card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.results {
+  background-color: var(--extra-light);
+}
+
+.results__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.result__card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.result__card:hover {
+  transform: translateY(-5px);
+}
+
+.result__card i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.result__card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.cta {
+  background: var(--gradient-secondary);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.cta .section__header,
+.cta .section__description {
+  color: white;
+}
+
+.cta__content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.footer__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  background-color: var(--surface);
+  padding: 4rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer__container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer__col:first-child {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .footer__col:first-child {
+    grid-column: 1 / 3;
+  }
+}
+
+.footer__logo {
+  margin-bottom: 1.5rem;
+}
+
+.footer__logo a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer__logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer__col .section__description {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.footer__col h4 {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer__socials a {
+  padding: 8px;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+.footer__socials a:hover {
+  color: var(--white);
+  background-color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.footer__links {
+  display: grid;
+  gap: 1rem;
+}
+
+.footer__links a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.footer__links a:hover {
+  color: var(--primary-color);
+}
+
+.footer__links a span {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.footer__bar {
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-align: center;
+  background-color: var(--white);
+  border-top: 1px solid var(--border);
+}
+
+/* Brands Section Styles used etra light cause using white will make it change to dark mode immediately*/
+.brands {
+  background-color: var(--extra-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.brands__slider {
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.brands__track {
+  display: flex;
+  animation: slide 30s linear infinite;
+  width: max-content;
+}
+
+.brand__logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  height: 140px;
+}
+
+.brand__logo img,
+.brand__logo svg {
+  max-height: 100px;
+  max-width: 180px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.brand__logo:hover {
+  transform: scale(1.05);
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.brands__slider:hover .brands__track {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .brand__logo {
+    height: 120px;
+    padding: 0 30px;
+  }
+
+  .brand__logo img,
+  .brand__logo svg {
+    max-height: 80px;
+    max-width: 150px;
+  }
+
+  .header__content h1 {
+    font-size: 2.75rem;
+  }
+
+  .cta__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .footer__logo img {
+    height: 40px;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Particle Background hidden or shown depending on the device the user uses to open the webpage */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 102, 255, 0.1);
+  animation: float 15s infinite linear;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+  }
+}
+</style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+  <div class="nav__header">
+    <!-- Logo on the left -->
+    <div class="nav__logo">
+      <a href="#">
+        <img src="OEA_Global_1_094320-removebg-preview.png" alt="OEA Global">
+      </a>
+    </div>
+
+    <!-- Hamburger on the RIGHT (mobile only as requested) -->
+    <div class="nav__menu__btn" id="menu-btn">
+      <i class="ri-menu-line"></i>
+    </div>
+  </div>
+
+  <!-- Full nav links (hidden on mobile, visible on smaller screen -->
+  <ul class="nav__links" id="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#what-we-do">What We Do</a></li>
+    <li><a href="#program">Our Program</a></li>
+    <li><a href="#clients">Who We Help</a></li>
+  </ul>
+
+  <!-- CTA button (desktop only) -->
+  <div class="nav__btns">
+  <a href="https://calendly.com/main-oeaglobal/30min" target="_blank">
+    <button class="btn">
+      <i class="ri-calendar-event-line"></i> Book a Growth Call
+    </button>
+  </a>
+  </div>
+</nav>
+    <!-- Hero Section -->
+    <header class="section__container header__container" id="home">
+      <div class="particles" id="particles"></div>
+      <div class="header__content" data-aos="fade-up">
+        <h1>The Smartest Way to <span>Scale Your Business</span></h1>
+        <p class="section__description">
+          We build and operate AI-powered marketing systems that help you attract customers, 
+          increase revenue, and scale with clarity and confidence.
+        </p>
+        <div class="header__btns">
+  <!-- Direct to Calendly for Growth Call as instructed  -->
+  <a href="https://calendly.com/main-oeaglobal/30min" target="_blank">
+    <button class="btn">
+      <i class="ri-calendar-event-line"></i> Book a Growth Call
+    </button>
+  </a>
+  
+  <!-- Redirect to Consultation page for Free Audit -->
+  <a href="Consultation.html">
+    <button class="btn btn-secondary">
+      <i class="ri-file-search-line"></i>Free Growth Audit
+    </button>
+  </a>
+</div>
+      </div>
+    </header>
+
+    <!-- Problem Section as requested-->
+    <section class="section__container problem" id="problem">
+      <div class="problem__content" data-aos="fade-up">
+        <h2 class="section__header">Traditional Marketing Is Broken</h2>
+        <p class="section__subheader">
+          Most businesses don't fail because of their product—they fail because their growth 
+          relies on guesswork, scattered tactics, and disconnected agencies.
+        </p>
+        
+        <div class="problem__list">
+          <div class="problem__item" data-aos="fade-up" data-aos-delay="100">
+            <h4><i class="ri-error-warning-line"></i> No Unified Strategy</h4>
+            <p class="section__description">Random campaigns without a cohesive plan that drives consistent results.</p>
+          </div>
+          <div class="problem__item" data-aos="fade-up" data-aos-delay="200">
+            <h4><i class="ri-team-line"></i> Disconnected Teams</h4>
+            <p class="section__description">Multiple freelancers or agencies working in silos without alignment.</p>
+          </div>
+          <div class="problem__item" data-aos="fade-up" data-aos-delay="300">
+            <h4><i class="ri-flashlight-line"></i> Inconsistent Execution</h4>
+            <p class="section__description">Sporadic efforts that don't build momentum or deliver predictable outcomes.</p>
+          </div>
+          <div class="problem__item" data-aos="fade-up" data-aos-delay="400">
+            <h4><i class="ri-cpu-line"></i> No Systems & Automation</h4>
+            <p class="section__description">Manual processes that don't scale and drain resources over time.</p>
+          </div>
+        </div>
+        
+        <div class="problem__result" data-aos="fade-up" data-aos-delay="500">
+          <h3 style="text-align: center; margin-top: 3rem; color: var(--secondary-color);">
+            Result: Chaos. Confusion. Unpredictable Revenue.
+          </h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="section__container what-we-do" id="what-we-do">
+      <div class="solution__header" data-aos="fade-up">
+        <h2 class="section__header">What We Do</h2>
+        <p class="section__subheader">
+          A full-service digital marketing and growth agency powered by strategy, AI, and execution.
+        </p>
+      </div>
+      
+      <div class="what-we-do__grid">
+        <div class="what-we-do__card" data-aos="fade-up" data-aos-delay="100">
+          <h3>SEO (Search Engine Optimization)</h3>
+          <p class="section__description">
+            Increase visibility and rank higher to drive consistent organic traffic.
+          </p>
+        </div>
+        
+        <div class="what-we-do__card" data-aos="fade-up" data-aos-delay="200">
+          <h3>Paid Advertising (PPC & Media Buying)</h3>
+          <p class="section__description">
+            Meta, Google, TikTok, LinkedIn—scalable traffic with measurable ROI.
+          </p>
+        </div>
+        
+        <div class="what-we-do__card" data-aos="fade-up" data-aos-delay="300">
+          <h3>Content Marketing</h3>
+          <p class="section__description">
+            Create authority-building content that attracts and converts.
+          </p>
+        </div>
+        
+        <div class="what-we-do__card" data-aos="fade-up" data-aos-delay="400">
+          <h3>Social Media Marketing & Management</h3>
+          <p class="section__description">
+            Grow your brand, engage your audience, generate demand.
+          </p>
+        </div>
+        
+        <div class="what-we-do__card" data-aos="fade-up" data-aos-delay="500">
+          <h3>Email Marketing & Automation</h3>
+          <p class="section__description">
+            Nurture leads, improve retention, and increase lifetime value.
+          </p>
+        </div>
+        
+        <div class="what-we-do__card" data-aos="fade-up" data-aos-delay="600">
+          <h3>Funnels & Landing Pages</h3>
+          <p class="section__description">
+            Turn clicks into customers with high-converting funnel systems.
+          </p>
+        </div>
+        
+        <div class="what-we-do__card" data-aos="fade-up" data-aos-delay="700">
+          <h3>AI & Marketing Automation</h3>
+          <p class="section__description">
+            Leverage automation and AI to work smarter, faster, and cheaper.
+          </p>
+        </div>
+        
+        <div class="what-we-do__card" data-aos="fade-up" data-aos-delay="800">
+          <h3>Analytics & Performance Tracking</h3>
+          <p class="section__description">
+            Data-driven insights, transparency, and continuous optimization.
+          </p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 4rem;" data-aos="fade-up">
+        <h3 style="color: var(--primary-color); font-weight: 700;">
+          We're not just a service provider—We are your growth marketing partner
+        </h3>
+      </div>
+    </section>
+
+    <!-- Program Section -->
+    <section class="section__container program" id="program">
+      <div class="program__content" data-aos="fade-up">
+        <h2 class="section__header">The Growth Partner Program™</h2>
+        <p class="section__subheader">
+          Your outsourced growth department, built to scale your business.
+        </p>
+        <p class="section__description">
+          We design, build, and operate a complete marketing infrastructure that drives predictable revenue and long-term growth.
+        </p>
+        
+        <div class="program__features">
+          <div class="program__feature" data-aos="fade-up" data-aos-delay="100">
+            <i class="ri-line-chart-line"></i>
+            <h4>Strategy & Positioning</h4>
+            <p>Data-driven strategies tailored to your market</p>
+          </div>
+          <div class="program__feature" data-aos="fade-up" data-aos-delay="200">
+            <i class="ri-funnel-line"></i>
+            <h4>Full-Funnel Development</h4>
+            <p>Complete customer journey optimization</p>
+          </div>
+          <div class="program__feature" data-aos="fade-up" data-aos-delay="300">
+            <i class="ri-megaphone-line"></i>
+            <h4>Paid Traffic & Performance</h4>
+            <p>ROI-focused advertising campaigns</p>
+          </div>
+          <div class="program__feature" data-aos="fade-up" data-aos-delay="400">
+            <i class="ri-customer-service-2-line"></i>
+            <h4>Team Building & Leadership</h4>
+            <p>Scalable team structures and processes</p>
+          </div>
+        </div>
+        
+        <div style="margin-top: 3rem;">
+          <h3 style="margin-bottom: 1.5rem; color: white;">One partner. One system. Scalable growth.</h3>
+          <button class="btn btn-accent"> 
+            <a href="GrowthPartner.html"><i class="ri-send-plane-fill"></i> Apply for the Growth Partner Program™</button> </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="section__container" id="clients">
+      <div class="solution__header" data-aos="fade-up">
+        <h2 class="section__header">Built for Growth-Focused Businesses</h2>
+        <p class="section__subheader">
+          We partner with ambitious companies ready to scale with smarter marketing.
+        </p>
+      </div>
+      
+      <div class="clients__grid">
+        <div class="client__card" data-aos="fade-up" data-aos-delay="100">
+          <i class="ri-service-line"></i>
+          <h4>Service-Based Businesses</h4>
+          <p class="section__description">
+            Professional services, consultants, and agencies looking to scale their client base.
+          </p>
+        </div>
+        
+        <div class="client__card" data-aos="fade-up" data-aos-delay="200">
+          <i class="ri-rocket-line"></i>
+          <h4>Startups & Digital Brands</h4>
+          <p class="section__description">
+            Fast-growing companies needing scalable marketing infrastructure.
+          </p>
+        </div>
+        
+        <div class="client__card" data-aos="fade-up" data-aos-delay="300">
+          <i class="ri-store-2-line"></i>
+          <h4>Local & Regional SMEs</h4>
+          <p class="section__description">
+            Established businesses expanding their market reach and digital presence.
+          </p>
+        </div>
+        
+        <div class="client__card" data-aos="fade-up" data-aos-delay="400">
+          <i class="ri-cloud-line"></i>
+          <h4>Tech & SaaS Companies</h4>
+          <p class="section__description">
+            Technology firms needing sophisticated marketing automation and lead generation.
+          </p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 4rem;" data-aos="fade-up">
+        <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">
+          If you're serious about growth, we're your competitive advantage.
+        </h3>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section__container results">
+      <div class="solution__header" data-aos="fade-up">
+        <h2 class="section__header">What You Can Expect</h2>
+        <p class="section__subheader">
+          Our growth systems have helped businesses achieve remarkable results.
+        </p>
+      </div>
+      
+      <div class="results__grid">
+        <div class="result__card" data-aos="fade-up" data-aos-delay="100">
+          <i class="ri-user-add-line"></i>
+          <h4>Double Lead Flow</h4>
+          <p class="section__description">
+            Consistent, high-quality leads that convert into customers.
+          </p>
+        </div>
+        
+        <div class="result__card" data-aos="fade-up" data-aos-delay="200">
+          <i class="ri-money-dollar-circle-line"></i>
+          <h4>Lower Acquisition Cost</h4>
+          <p class="section__description">
+            More efficient marketing that reduces customer acquisition costs.
+          </p>
+        </div>
+        
+        <div class="result__card" data-aos="fade-up" data-aos-delay="300">
+          <i class="ri-repeat-line"></i>
+          <h4>Increase Retention</h4>
+          <p class="section__description">
+            Higher customer lifetime value through better retention strategies.
+          </p>
+        </div>
+        
+        <div class="result__card" data-aos="fade-up" data-aos-delay="400">
+          <i class="ri-bar-chart-box-line"></i>
+          <h4>Compounding Systems</h4>
+          <p class="section__description">
+            Marketing systems that improve and deliver more value over time.
+          </p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 3rem;" data-aos="fade-up">
+        <h3 style="color: var(--primary-color);">
+          We make growth predictable—and scalable.
+        </h3>
+      </div>
+    </section>
+
+<!-- Brands Section -->
+<section class="section__container brands">
+  <div class="solution__header" data-aos="fade-up">
+    <h2 class="section__header">Brands We've Worked With</h2>
+    <p class="section__subheader">
+      We've partnered with amazing companies to drive their growth and success.
+    </p>
+  </div>
+<!--Brands we've worked with section-->
+  <div class="brands__slider" data-aos="fade-up">
+    <div class="brands__track">
+      <!-- CreateSpace Africa logo and slideshow -->
+      <div class="brand__logo">
+        <img src="Cre8space-Logo (1).png" width="60px" alt="CreateSpace Africa" loading="lazy">
+      </div>
+
+      <!-- Jubna -->
+      <div class="brand__logo">
+        <img src="jubna-logo.svg" alt="Jubna" loading="lazy">
+      </div>
+
+      <!-- 3D7 Tech -->
+      <div class="brand__logo">
+        <img src="3D7.png" width="60px" alt="3D7 Tech" loading="lazy">
+      </div>
+
+      <!-- Inhouz Cloud -->
+      <div class="brand__logo">
+  <!-- Inline SVG for theme-aware coloring -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 955.2" class="inhouz-logo" aria-label="Inhouz Cloud">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 3000 955.2" style="enable-background:new 0 0 3000 955.2;" xml:space="preserve">
+<style type="text/css">
+	.st17 { fill: currentColor; }
+</style>
+<g>
+	<g>
+		<path class="st17" d="M1139,253.5c0-23.8,18.9-42.2,47-42.2c28.1,0,47,17.5,47,40.7c0,25.2-18.9,43.6-47,43.6
+			C1157.9,295.6,1139,277.2,1139,253.5z M1148.2,332h75.6v260.8h-75.6V332z"/>
+		<path class="st17" d="M1560.7,443.5v149.3h-75.6V455.1c0-42.2-19.4-61.6-52.8-61.6c-36.4,0-62.5,22.3-62.5,70.3v128.9h-75.6V332
+			h72.2v30.5c20.4-22.3,50.9-34.4,86.3-34.4C1514.2,328.1,1560.7,364,1560.7,443.5z"/>
+		<path class="st17" d="M1895.7,443.5v149.3h-75.6V455.1c0-42.2-19.4-61.6-52.8-61.6c-36.4,0-62.5,22.3-62.5,70.3v128.9h-75.6V233.1
+			h75.6v126c20.4-20.4,49.4-31,82.9-31C1849.2,328.1,1895.7,364,1895.7,443.5z"/>
+		<path class="st17" d="M1947.6,462.4c0-78.5,60.6-134.3,143.5-134.3c82.9,0,143,55.7,143,134.3c0,78.5-60.1,134.3-143,134.3
+			C2008.2,596.7,1947.6,540.9,1947.6,462.4z M2157.5,462.4c0-45.1-28.6-72.2-66.4-72.2c-37.8,0-66.9,27.1-66.9,72.2
+			s29.1,72.2,66.9,72.2C2128.9,534.6,2157.5,507.5,2157.5,462.4z"/>
+		<path class="st17" d="M2547.2,332v260.8h-71.7v-31c-19.9,22.8-49,34.9-81,34.9c-65.4,0-111.5-36.8-111.5-117.3V332h75.6v136.2
+			c0,43.6,19.4,63,52.8,63c34.9,0,60.1-22.3,60.1-70.3V332H2547.2z"/>
+		<path class="st17" d="M2832.2,534.6v58.2h-232.7v-45.6l132.8-157.1H2603V332h224.9v45.6l-132.8,157.1H2832.2z"/>
+	</g>
+	<g>
+		<path class="st17" d="M1139,697.6c0-27,20.7-46.3,48.6-46.3c15.5,0,28.4,5.6,36.8,15.9l-13.3,12.3c-6-6.9-13.6-10.5-22.5-10.5
+			c-16.8,0-28.6,11.8-28.6,28.6s11.9,28.6,28.6,28.6c9,0,16.5-3.6,22.5-10.6l13.3,12.3c-8.4,10.4-21.4,16-37,16
+			C1159.7,743.9,1139,724.6,1139,697.6z"/>
+		<path class="st17" d="M1249.9,652.8h20.7v72.6h44.9v16.9h-65.6V652.8z"/>
+		<path class="st17" d="M1331.5,697.6c0-26.6,20.7-46.3,49-46.3c28.1,0,49,19.6,49,46.3c0,26.7-20.8,46.3-49,46.3
+			C1352.2,743.9,1331.5,724.2,1331.5,697.6z M1408.5,697.6c0-17-12-28.6-28-28.6c-16,0-28,11.6-28,28.6c0,17,12,28.6,28,28.6
+			C1396.5,726.3,1408.5,714.6,1408.5,697.6z"/>
+		<path class="st17" d="M1455.8,703v-50.1h20.7v49.4c0,17,7.4,24,20,24c12.7,0,20-7,20-24v-49.4h20.5V703
+			c0,26.3-15.1,40.9-40.5,40.9C1470.9,743.9,1455.8,729.3,1455.8,703z"/>
+		<path class="st17" d="M1568.9,652.8h40.7c29.3,0,49.4,17.6,49.4,44.8c0,27.1-20.1,44.8-49.4,44.8h-40.7V652.8z M1608.5,725.4
+			c17.8,0,29.4-10.6,29.4-27.8c0-17.1-11.6-27.8-29.4-27.8h-18.9v55.5H1608.5z"/>
+		<path class="st17" d="M1726.7,733.5l7-15.6c7.5,5.5,18.8,9.3,29.5,9.3c12.3,0,17.3-4.1,17.3-9.6c0-16.8-52.1-5.2-52.1-38.5
+			c0-15.2,12.3-27.9,37.7-27.9c11.3,0,22.8,2.7,31.1,7.9l-6.4,15.7c-8.3-4.7-16.9-7-24.8-7c-12.3,0-17,4.6-17,10.2
+			c0,16.5,52.1,5.1,52.1,38c0,15-12.4,27.8-38,27.8C1748.9,743.9,1734.6,739.7,1726.7,733.5z"/>
+		<path class="st17" d="M1896.2,725.7v16.6h-69.3v-89.5h67.7v16.6h-47.1v19.4h41.6V705h-41.6v20.7H1896.2z"/>
+		<path class="st17" d="M1981.2,742.4l-17.3-24.9h-1h-18v24.9h-20.7v-89.5h38.8c23.9,0,38.9,12.4,38.9,32.5
+			c0,13.4-6.8,23.3-18.4,28.3l20.1,28.8H1981.2z M1961.8,669.7h-16.9v31.2h16.9c12.7,0,19.1-5.9,19.1-15.6
+			C1980.8,675.5,1974.4,669.7,1961.8,669.7z"/>
+		<path class="st17" d="M2115.8,652.8l-38.8,89.5h-20.5l-38.6-89.5h22.4l27.2,64l27.6-64H2115.8z"/>
+		<path class="st17" d="M2134.7,652.8h20.7v89.5h-20.7V652.8z"/>
+		<path class="st17" d="M2182.5,697.6c0-27,20.7-46.3,48.6-46.3c15.5,0,28.4,5.6,36.8,15.9l-13.3,12.3c-6-6.9-13.6-10.5-22.5-10.5
+			c-16.8,0-28.6,11.8-28.6,28.6s11.9,28.6,28.6,28.6c9,0,16.5-3.6,22.5-10.6l13.3,12.3c-8.4,10.4-21.4,16-37,16
+			C2203.2,743.9,2182.5,724.6,2182.5,697.6z"/>
+		<path class="st17" d="M2362.7,725.7v16.6h-69.3v-89.5h67.7v16.6H2314v19.4h41.6V705H2314v20.7H2362.7z"/>
+		<path class="st17" d="M2383.7,733.5l7-15.6c7.5,5.5,18.8,9.3,29.5,9.3c12.3,0,17.3-4.1,17.3-9.6c0-16.8-52.1-5.2-52.1-38.5
+			c0-15.2,12.3-27.9,37.7-27.9c11.3,0,22.8,2.7,31.1,7.9l-6.4,15.7c-8.3-4.7-16.9-7-24.8-7c-12.3,0-17,4.6-17,10.2
+			c0,16.5,52.1,5.1,52.1,38c0,15-12.4,27.8-38,27.8C2406,743.9,2391.6,739.7,2383.7,733.5z"/>
+	</g>
+	<path class="st17" d="M606.6,505.7c-3.1-9.5-6.8-18.9-11.1-27.8C565,413.9,505.4,368,436.7,354.2c12.4-66.3,70.5-115.8,139.8-115.8
+		c75.8,0,138.2,59.3,142,134.9l0,0.2c0.1,2,0.2,4.3,0.2,7.1c0,7.3-0.6,14.6-1.7,21.8l-3.9,24.9h84.1l2.3-18.9
+		c1.1-9.2,1.7-18.5,1.7-27.7c0-3-0.1-6-0.2-9.2c-2.3-58.1-26.7-112.4-68.7-152.8c-42.1-40.5-97.5-62.8-155.9-62.8
+		c-58.4,0-113.8,22.3-155.9,62.8c-37.6,36.1-61,83.4-67.3,134.6c-48.5,8.5-93,32.8-126.6,69.6c-38,41.5-59,95.4-59,151.8
+		c0,123.9,100.9,224.8,224.8,224.8h21.5v-82.6h-21.5c-78.4,0-142.2-63.8-142.2-142.2c0-73.1,54.8-134,127.5-141.5
+		c4.9-0.5,9.9-0.8,14.8-0.8c6.7,0,13.5,0.5,20.3,1.5c49.5,7.1,92.1,40.3,111.3,86.7l5.5,13.3h86.1L606.6,505.7z"/>
+	<path class="st17" d="M901.8,553.1v21.5c0,78.4-63.8,142.2-142.2,142.2c-69.3,0-129.6-51.5-140.5-119.9l-2.9-18.2h-82.7l3,24.2
+		c3,23.8,9.7,46.8,20.1,68.4c18,37.8,46.2,69.7,81.4,92.4c36.2,23.3,78.2,35.6,121.5,35.6c124,0,224.8-100.8,224.8-224.8v-21.5
+		H901.8z"/>
+</g>
+</svg>
+  </svg>
+</div>
+    </div>
+  </div>
+</section>
+    <!-- CTA Section (The scaling smarter stuff)-->
+    <section class="section__container cta">
+      <div class="cta__content" data-aos="fade-up">
+        <h2 class="section__header">Ready to Scale Smarter?</h2>
+        <p class="section__subheader">
+          We'll diagnose your current marketing, identify growth opportunities, and map out your smartest path to scale.
+        </p>
+        <p class="section__description" style="margin-bottom: 2rem;">
+          No pressure. Real strategy. Immediate clarity.
+        </p>
+        
+           <div class="header__btns">
+            <!-- Direct to Calendly for Growth Call -->
+  <a href="https://calendly.com/main-oeaglobal/30min" target="_blank">
+    <button class="btn">
+      <i class="ri-calendar-event-line"></i> Book a Growth Call
+    </button>
+  </a>
+  
+  <!-- Redirect to Consultation page for Free Audit -->
+  <a href="Consultation.html">
+    <button class="btn btn-secondary">
+      <i class="ri-file-search-line"></i>Free Growth Audit
+    </button>
+  </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <div class="footer__logo">
+            
+              <h2>OEA Global</h2>
+           
+          </div>
+          <p class="section__description">
+            We build and operate AI-powered marketing systems that help businesses attract customers, 
+            increase revenue, and scale with clarity and confidence.
+          </p>
+          <div class="footer__socials">
+            <a href="https://www.facebook.com/share/17YoTxSUCh/"><i class="ri-facebook-fill"></i></a>
+            <a href="#"><i class="ri-twitter-fill"></i></a>
+            <a href="https://www.instagram.com/oea.global"><i class="ri-instagram-line"></i></a>
+            <a href="#"><i class="ri-linkedin-fill"></i></a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <ul class="footer__links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#problem">The Problem</a></li>
+            <li><a href="#what-we-do">What We Do</a></li>
+            <li><a href="#program">Our Program</a></li>
+            <li><a href="#clients">Who We Help</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Services</h4>
+          <ul class="footer__links">
+            <li><a href="#">Growth Partner Program</a></li>
+            <li><a href="#">Marketing Strategy</a></li>
+            <li><a href="#">AI-Powered Marketing</a></li>
+            <li><a href="#">Revenue Engine</a></li>
+            <li><a href="#">Performance Marketing</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <ul class="footer__links">
+            <li>
+              <a href="#">
+                <span><i class="ri-phone-fill"></i></span> 0810555585
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span><i class="ri-mail-fill"></i></span> main.oeaglobal@gmail.com
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span><i class="ri-map-pin-2-fill"></i></span> Sars Road, PortHarcourt, Rivers state, Nigeria
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2025 OEA Global. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      // Initialize AOS (Animate On Scroll to scroll automatically(makes the site more slick))
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+      });
+
+      // Mobile Navigation
+      const menuBtn = document.getElementById("menu-btn");
+      const navLinks = document.getElementById("nav-links");
+      const menuBtnIcon = menuBtn.querySelector("i");
+
+      menuBtn.addEventListener("click", (e) => {
+        navLinks.classList.toggle("open");
+
+        const isOpen = navLinks.classList.contains("open");
+        menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+      });
+
+      navLinks.addEventListener("click", (e) => {
+        navLinks.classList.remove("open");
+        menuBtnIcon.setAttribute("class", "ri-menu-line");
+      });
+
+      // Particle Background
+      function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Random properties (i added this for extra functionality to avoid bugs and errors to keep webpage with reloaded issue)
+          const size = Math.random() * 60 + 10;
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          const animationDelay = Math.random() * 15;
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${posX}%`;
+          particle.style.top = `${posY}%`;
+          particle.style.animationDelay = `${animationDelay}s`;
+          
+          particlesContainer.appendChild(particle);
+        }
+      }
+      
+      // Initialize particles for functionality it also improve scroll speed somehow, DONT CHANGE
+      createParticles();
+
+      // Brands Slider Functionality tweaked everytime so this is the perfect one for both PC and mobilw view
+      function initBrandsSlider() {
+        const track = document.querySelector('.brands__track');
+        const logos = document.querySelectorAll('.brand__logo');
+        
+        // Duplicate logos for seamless loop from left to left as instructed
+        logos.forEach(logo => {
+          const clone = logo.cloneNode(true);
+          track.appendChild(clone);
+        });
+      }
+
+      // Initialize brands slider dont tamper cause it'll disrupt the sequence from left to left
+      initBrandsSlider();
+
+      // Smooth scrolling for anchor links and other important links to join
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            if (navLinks.classList.contains('open')) {
+              navLinks.classList.remove('open');
+              menuBtnIcon.setAttribute("class", "ri-menu-line");
+            }
+          }
+        });
+      });
+
+      // Fade-in animation on scroll as page is being reloaded 
+      function checkFadeIn() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('visible');
+          }
+        });
+      }
+      
+      // Initial check
+      checkFadeIn();
+      
+      // Listen for scroll events like fade-in and fade-out when page is being reloaded
+      window.addEventListener('scroll', checkFadeIn);
+    </script>
+  </body>
+</html>

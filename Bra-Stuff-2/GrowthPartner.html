@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+  <title>Apply with the Growth Partner Program™ | OEA Global</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+
+    :root {
+      --primary-color: #0066FF;
+      --secondary-color: #FF4D6D;
+      --accent-color: #00D4AA;
+      --text-dark: #1A1D29;
+      --text-light: #5A5F7D;
+      --white: #FFFFFF;
+      --background: #FFFFFF;
+      --border: #E2E8F0;
+      --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+      --gradient-secondary: linear-gradient(135deg, #FF4D6D 0%, #FF8E4F 100%);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-color: #4DA6FF;
+        --secondary-color: #FF6B8A;
+        --text-dark: #E2E8F0;
+        --text-light: #94A3B8;
+        --white: #1A223D;
+        --background: #0F1425;
+        --border: #2D3748;
+        --gradient-primary: linear-gradient(135deg, #4DA6FF 0%, #33E0C9 100%);
+      }
+    }
+
+    * { padding: 0; margin: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--background);
+      color: var(--text-dark);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 70px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      nav { background: rgba(15,20,37,0.95); }
+    }
+
+    .nav__logo img { height: 55px; width: auto; object-fit: contain; }
+
+    .nav__back a {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--text-light); font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav__back a:hover { color: var(--primary-color); }
+
+    .page-hero {
+      background: var(--gradient-primary);
+      padding: 7rem 1.5rem 4rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.15); color: #fff;
+      border: 1px solid rgba(255,255,255,0.25); border-radius: 50px;
+      padding: 0.4rem 1rem; font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 1.25rem; backdrop-filter: blur(6px);
+    }
+
+    .page-hero h1 {
+      font-size: 2.8rem; font-weight: 800; color: #fff;
+      line-height: 1.15; margin-bottom: 1rem;
+    }
+    @media (min-width: 768px) { .page-hero h1 { font-size: 3.5rem; } }
+
+    .page-hero p {
+      font-size: 1.1rem; color: rgba(255,255,255,0.88);
+      max-width: 580px; margin: 0 auto; line-height: 1.7;
+    }
+
+    .form-section {
+      max-width: 800px;
+      margin: -2.5rem auto 5rem;
+      padding: 0 1.25rem;
+      position: relative; z-index: 2;
+    }
+
+    .form-card {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.10);
+      border: 1px solid var(--border);
+      padding: 2.5rem 1.75rem;
+    }
+    @media (min-width: 640px) { .form-card { padding: 3rem 3.5rem; } }
+
+    .form-card h2 { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.4rem; }
+    .form-intro { font-size: 0.95rem; color: var(--text-light); margin-bottom: 2rem; line-height: 1.6; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 600px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+
+    .field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .field.full { grid-column: 1 / -1; }
+
+    label { font-size: 0.875rem; font-weight: 600; color: var(--text-dark); }
+    label .req { color: var(--secondary-color); margin-left: 2px; }
+
+    input, select, textarea {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      font-size: 0.95rem; font-family: "Plus Jakarta Sans", sans-serif;
+      background: var(--background); color: var(--text-dark);
+      transition: border-color 0.2s, box-shadow 0.2s; outline: none; resize: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+    }
+    textarea { min-height: 110px; }
+    select { appearance: none; cursor: pointer; }
+
+    .select-wrapper { position: relative; }
+    .select-wrapper i {
+      position: absolute; right: 1rem; top: 50%;
+      transform: translateY(-50%); color: var(--text-light);
+      pointer-events: none; font-size: 1.1rem;
+    }
+
+    .divider {
+      grid-column: 1 / -1;
+      display: flex; align-items: center; gap: 1rem; margin: 0.5rem 0;
+    }
+    .divider span {
+      font-size: 0.78rem; font-weight: 700; color: var(--text-light);
+      text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .submit-btn {
+      width: 100%; padding: 1rem; margin-top: 1.5rem;
+      background: var(--gradient-primary); color: #fff;
+      border: none; border-radius: 12px;
+      font-size: 1.05rem; font-weight: 700;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; gap: 0.6rem;
+      box-shadow: 0 6px 20px rgba(0,102,255,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .submit-btn::before {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .submit-btn:hover::before { left: 100%; }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,102,255,0.35); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Thank You for the user but in CSS made this for 3rem because the px feature did not display well when ran*/
+    #thank-you { display: none; text-align: center; padding: 3rem 1rem; }
+
+    .ty-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #00D4AA, #0066FF);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 1.5rem;
+      font-size: 2.2rem; color: #fff; animation: popIn 0.5s ease;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    #thank-you h2 { font-size: 2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.75rem; }
+    #thank-you p { font-size: 1.05rem; color: var(--text-light); max-width: 440px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    .ty-back-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 2rem; background: var(--gradient-primary);
+      color: #fff; border-radius: 10px; font-weight: 700;
+      text-decoration: none; font-size: 0.95rem; transition: transform 0.2s;
+    }
+    .ty-back-btn:hover { transform: translateY(-2px); }
+
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2.5px solid rgba(255,255,255,0.4);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin 0.7s linear infinite; display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .footer-bar {
+      padding: 1.5rem; font-size: 0.85rem;
+      color: var(--text-light); text-align: center;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav__logo">
+      <a href="index.html">
+        <img src="OEA_Global_1_094320-removebg-preview.png" alt="OEA Global">
+      </a>
+    </div>
+    <div class="nav__back">
+      <a href="index.html"><i class="ri-arrow-left-line"></i> Back to Home</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="badge"><i class="ri-rocket-2-line"></i> Limited Spots Available</div>
+    <h1>Apply for the<br>Growth Partner Program™</h1>
+    <p>Tell us about your business and ambitions. If you're a great fit, we'll reach out within 24–48 hours to schedule your personal Growth Strategy Session.</p>
+  </div>
+
+  <section class="form-section">
+    <div class="form-card">
+
+      <div id="form-wrapper">
+        <h2>Your Application</h2>
+        <p class="form-intro">Answer honestly — this helps us understand your business and whether we can genuinely help you scale. Takes about 3 minutes.</p>
+
+        <form id="apply-form" action="https://formspree.io/f/xbdavgaq" method="POST">
+          <input type="hidden" name="_subject" value="🚀 New Growth Partner Program Application — OEA Global">
+
+          <div class="form-grid">
+
+            <div class="divider full"><span>Personal Info</span></div>
+
+            <div class="field">
+              <label for="first_name">First Name <span class="req">*</span></label>
+              <input type="text" id="first_name" name="First Name" placeholder="e.g. Emeka" required>
+            </div>
+
+            <div class="field">
+              <label for="last_name">Last Name <span class="req">*</span></label>
+              <input type="text" id="last_name" name="Last Name" placeholder="e.g. Johnson" required>
+            </div>
+
+            <div class="field">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="Email" placeholder="you@company.com" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone / WhatsApp <span class="req">*</span></label>
+              <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="+234 800 000 0000" required>
+            </div>
+
+            <div class="divider full"><span>About Your Business</span></div>
+
+            <div class="field">
+              <label for="business_name">Business / Company Name <span class="req">*</span></label>
+              <input type="text" id="business_name" name="Business Name" placeholder="e.g. XYZ Solutions Ltd" required>
+            </div>
+
+            <div class="field">
+              <label for="industry">Industry / Niche <span class="req">*</span></label>
+              <input type="text" id="industry" name="Industry / Niche" placeholder="e.g. E-commerce, SaaS, Real Estate" required>
+            </div>
+
+            <div class="field">
+              <label for="website">Website or Social Media Link</label>
+              <input type="url" id="website" name="Website / Social Link" placeholder="https://yourwebsite.com">
+            </div>
+
+            <div class="field">
+              <label for="revenue">Current Monthly Revenue <span class="req">*</span></label>
+              <div class="select-wrapper">
+                <select id="revenue" name="Current Monthly Revenue" required>
+                  <option value="" disabled selected>Select a range</option>
+                  <option>Pre-revenue / Just starting</option>
+                  <option>Below ₦500,000 / month</option>
+                  <option>₦500K – ₦2M / month</option>
+                  <option>₦2M – ₦5M / month</option>
+                  <option>₦5M – ₦20M / month</option>
+                  <option>Above ₦20M / month</option>
+                </select>
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+            </div>
+
+            <div class="divider full"><span>Your Growth Goals</span></div>
+
+            <div class="field full">
+              <label for="biggest_challenge">What is your biggest marketing or growth challenge right now? <span class="req">*</span></label>
+              <textarea id="biggest_challenge" name="Biggest Challenge" placeholder="e.g. We struggle to generate consistent leads. Our ads aren't converting well..." required></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="goal">What does success look like for you in the next 12 months? <span class="req">*</span></label>
+              <textarea id="goal" name="12-Month Success Goal" placeholder="e.g. Double our monthly revenue, build a consistent lead pipeline, expand to 3 new markets..." required></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="why_partner">Why do you want to join the Growth Partner Program™? <span class="req">*</span></label>
+              <textarea id="why_partner" name="Why Join Growth Partner Program" placeholder="Tell us why you think this is the right fit for your business..." required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="heard">How did you hear about us? <span class="req">*</span></label>
+              <div class="select-wrapper">
+                <select id="heard" name="How They Heard About Us" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>Google / Search Engine</option>
+                  <option>Instagram</option>
+                  <option>Facebook</option>
+                  <option>LinkedIn</option>
+                  <option>Referral / Word of Mouth</option>
+                  <option>TikTok</option>
+                  <option>Other</option>
+                </select>
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="investment">Are you ready to invest in your growth? <span class="req">*</span></label>
+              <div class="select-wrapper">
+                <select id="investment" name="Ready to Invest" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>Yes — I'm committed and ready to move forward</option>
+                  <option>I need more information first</option>
+                  <option>I'm just exploring for now</option>
+                </select>
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span id="btn-text"><i class="ri-send-plane-fill"></i> Submit My Application</span>
+            <div class="spinner" id="spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <!-- Thank You Message For the user this is the HTML version of what we did in the css, had to make it align-->
+      <div id="thank-you">
+        <div class="ty-icon"><i class="ri-checkbox-circle-fill"></i></div>
+        <h2>Application Received! 🎉</h2>
+        <p>
+          Thank you for applying to the <strong>Growth Partner Program™</strong>.<br><br>
+          You will be redirected to our Calendly shortly <br>Our team will review your application carefully. If you're a strong fit, we'll reach out within <strong>24–48 hours</strong> to schedule your personal Growth Strategy Session. Keep an eye on your inbox!
+        </p>
+        <a href="index.html" class="ty-back-btn"><i class="ri-home-4-line"></i> Back to Home</a>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="footer-bar">Copyright © 2025 OEA Global. All rights reserved.</div>
+ <!-- Finished with the HTML side now working on the javacript side since i opt to build it without servers, it'll be difficult to create a database when he wants to run AUTH-->
+  <script>
+    const form = document.getElementById('apply-form');
+    const formWrapper = document.getElementById('form-wrapper');
+    const thankYou = document.getElementById('thank-you');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const spinner = document.getElementById('spinner');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      spinner.style.display = 'block';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+  formWrapper.style.display = 'none';
+  thankYou.style.display = 'block';
+  document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth' });
+  
+  // Redirect to Calendly after 3 seconds or should i change it to one? SHOW HIM TO CONFIRM or should i just chaneg it to  seconds so h
+  setTimeout(() => {
+    window.location.href = 'https://calendly.com/main-oeaglobal/30min';
+  }, 3000);
+} else {
+          throw new Error('Server error');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        btnText.style.display = 'flex';
+        spinner.style.display = 'none';
+        alert('Something went wrong. Please try again or email us at main.oeaglobal@gmail.com');
+      }
+    });
+  </script>
+
+</body>
+</html>
