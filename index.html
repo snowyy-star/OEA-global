@@ -476,10 +476,10 @@ nav {
   padding: 2.5rem;
   border-radius: 16px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
+  /* No hover/transition — hover effect removed as requested */
 }
 
 .what-we-do__card::before {
@@ -490,11 +490,6 @@ nav {
   width: 100%;
   height: 4px;
   background: var(--gradient-primary);
-}
-
-.what-we-do__card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
 .what-we-do__card h3 {
@@ -1544,9 +1539,3 @@ nav {
     </script>
   </body>
 </html>
-
-
-
-
-
-
