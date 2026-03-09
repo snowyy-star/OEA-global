@@ -150,6 +150,180 @@
       pointer-events: none; font-size: 1.1rem;
     }
 
+    /* ── Custom Searchable Dropdown ── */
+    .custom-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .custom-select-trigger {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background: var(--background);
+      color: var(--text-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      user-select: none;
+    }
+
+    .custom-select-trigger.has-value {
+      color: var(--text-dark);
+    }
+
+    .custom-select-trigger:focus,
+    .custom-select-wrapper.open .custom-select-trigger {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+      outline: none;
+    }
+
+    .trigger-arrow {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .custom-select-wrapper.open .trigger-arrow {
+      transform: rotate(180deg);
+    }
+
+    .custom-select-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: var(--white);
+      border: 1.5px solid var(--primary-color);
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0,102,255,0.15);
+      z-index: 500;
+      overflow: hidden;
+      display: none;
+      animation: dropIn 0.18s ease;
+    }
+
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .custom-select-wrapper.open .custom-select-dropdown {
+      display: block;
+    }
+
+    .custom-select-search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--background);
+      position: sticky;
+      top: 0;
+    }
+
+    .custom-select-search-box i {
+      color: var(--text-light);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .custom-select-search-box input {
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      box-shadow: none;
+      width: 100%;
+    }
+
+    .custom-select-search-box input:focus {
+      border: none;
+      box-shadow: none;
+      outline: none;
+    }
+
+    .custom-select-list {
+      list-style: none;
+      max-height: 260px;
+      overflow-y: auto;
+      padding: 0.4rem 0;
+    }
+
+    .custom-select-list::-webkit-scrollbar { width: 5px; }
+    .custom-select-list::-webkit-scrollbar-track { background: transparent; }
+    .custom-select-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+    .custom-select-list li {
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text-dark);
+      transition: background 0.15s, color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .custom-select-list li:hover,
+    .custom-select-list li.focused {
+      background: rgba(0,102,255,0.07);
+      color: var(--primary-color);
+    }
+
+    .custom-select-list li.selected {
+      background: rgba(0,102,255,0.1);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .custom-select-list li.selected::after {
+      content: '\F26B'; /* ri-check-line */
+      font-family: 'remixicon';
+      margin-left: auto;
+      font-size: 1rem;
+    }
+
+    .custom-select-list .group-label {
+      padding: 0.5rem 1rem 0.25rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-light);
+      cursor: default;
+      background: transparent;
+    }
+
+    .custom-select-list .group-label:hover {
+      background: transparent;
+      color: var(--text-light);
+    }
+
+    .custom-select-list .no-results {
+      padding: 1.2rem 1rem;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      cursor: default;
+    }
+
+    .custom-select-list .no-results:hover {
+      background: transparent;
+      color: var(--text-light);
+    }
+
+    /* ── end custom dropdown ── */
+
     .divider {
       grid-column: 1 / -1;
       display: flex; align-items: center; gap: 1rem; margin: 0.5rem 0;
@@ -184,7 +358,6 @@
     .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,102,255,0.35); }
     .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-    /* Thank You for the user but in CSS made this for 3rem because the px feature did not display well when ran*/
     #thank-you { display: none; text-align: center; padding: 3rem 1rem; }
 
     .ty-icon {
@@ -250,7 +423,7 @@
 
       <div id="form-wrapper">
         <h2>Your Application</h2>
-        <p class="form-intro">Answer honestly — this helps us understand your business and whether we can genuinely help you scale. Takes about 3 minutes.</p>
+        <p class="form-intro">Answer honestly, this helps us understand your business and whether we can genuinely help you scale. Takes about 3 minutes.</p>
 
         <form id="apply-form" action="https://formspree.io/f/xbdavgaq" method="POST">
           <input type="hidden" name="_subject" value="🚀 New Growth Partner Program Application — OEA Global">
@@ -286,10 +459,25 @@
               <input type="text" id="business_name" name="Business Name" placeholder="e.g. XYZ Solutions Ltd" required>
             </div>
 
+            <!-- ── Searchable Industry / Niche Dropdown ── -->
             <div class="field">
-              <label for="industry">Industry / Niche <span class="req">*</span></label>
-              <input type="text" id="industry" name="Industry / Niche" placeholder="e.g. E-commerce, SaaS, Real Estate" required>
+              <label>Industry / Niche <span class="req">*</span></label>
+              <input type="hidden" id="industry-hidden" name="Industry / Niche">
+              <div class="custom-select-wrapper" id="industry-wrapper">
+                <div class="custom-select-trigger" id="industry-trigger" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false">
+                  <span id="industry-display">Select or search your niche...</span>
+                  <i class="ri-arrow-down-s-line trigger-arrow"></i>
+                </div>
+                <div class="custom-select-dropdown" id="industry-dropdown" role="listbox">
+                  <div class="custom-select-search-box">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="industry-search" placeholder="Search industries..." autocomplete="off" aria-label="Search industries">
+                  </div>
+                  <ul class="custom-select-list" id="industry-list"></ul>
+                </div>
+              </div>
             </div>
+            <!-- ── end dropdown ── -->
 
             <div class="field">
               <label for="website">Website or Social Media Link</label>
@@ -368,13 +556,12 @@
         </form>
       </div>
 
-      <!-- Thank You Message For the user this is the HTML version of what we did in the css, had to make it align-->
       <div id="thank-you">
         <div class="ty-icon"><i class="ri-checkbox-circle-fill"></i></div>
         <h2>Application Received! 🎉</h2>
         <p>
           Thank you for applying to the <strong>Growth Partner Program™</strong>.<br><br>
-          You will be redirected to our Calendly shortly <br>Our team will review your application carefully. If you're a strong fit, we'll reach out within <strong>24–48 hours</strong> to schedule your personal Growth Strategy Session. Keep an eye on your inbox!
+          You will be redirected to our Calendly shortly.<br>Our team will review your application carefully. If you're a strong fit, we'll reach out within <strong>24–48 hours</strong> to schedule your personal Growth Strategy Session. Keep an eye on your inbox!
         </p>
         <a href="index.html" class="ty-back-btn"><i class="ri-home-4-line"></i> Back to Home</a>
       </div>
@@ -383,17 +570,314 @@
   </section>
 
   <div class="footer-bar">Copyright © 2025 OEA Global. All rights reserved.</div>
- <!-- Finished with the HTML side now working on the javacript side since i opt to build it without servers, it'll be difficult to create a database when he wants to run AUTH-->
+
   <script>
-    const form = document.getElementById('apply-form');
+    /* ─────────────────────────────────────────────
+       INDUSTRY / NICHE DATA
+    ───────────────────────────────────────────── */
+    const INDUSTRIES = [
+      {
+        group: "Digital & Technology",
+        items: [
+          "SaaS / Software as a Service",
+          "Mobile App Development",
+          "Web Development & Design",
+          "IT Services & Consulting",
+          "Cybersecurity",
+          "Artificial Intelligence / AI Tools",
+          "Blockchain & Crypto",
+          "Cloud Computing",
+          "Tech Startup",
+          "Digital Products & Downloads",
+        ]
+      },
+      {
+        group: "E-Commerce & Retail",
+        items: [
+          "E-Commerce (General)",
+          "Fashion & Apparel",
+          "Beauty & Cosmetics",
+          "Electronics & Gadgets",
+          "Home & Living / Furniture",
+          "Food & Grocery Delivery",
+          "Sports & Fitness Equipment",
+          "Jewellery & Accessories",
+          "Kids & Baby Products",
+          "Luxury Goods",
+        ]
+      },
+      {
+        group: "Marketing & Media",
+        items: [
+          "Digital Marketing Agency",
+          "Social Media Management",
+          "Content Creation / Blogging",
+          "Influencer Marketing",
+          "SEO / SEM Agency",
+          "Public Relations (PR)",
+          "Advertising Agency",
+          "Podcasting",
+          "YouTube / Video Production",
+          "Photography & Videography",
+        ]
+      },
+      {
+        group: "Finance & Professional Services",
+        items: [
+          "Financial Services / Fintech",
+          "Investment & Wealth Management",
+          "Insurance",
+          "Accounting & Bookkeeping",
+          "Legal Services / Law Firm",
+          "Business Consulting",
+          "HR & Recruitment",
+          "Tax Advisory",
+          "Microfinance / Lending",
+          "Payment Solutions",
+        ]
+      },
+      {
+        group: "Real Estate & Construction",
+        items: [
+          "Real Estate Agency",
+          "Property Development",
+          "Architecture & Interior Design",
+          "Construction & Engineering",
+          "Short-Let / Airbnb Rentals",
+          "Facility Management",
+          "Mortgage & Real Estate Finance",
+        ]
+      },
+      {
+        group: "Health & Wellness",
+        items: [
+          "Healthcare / Hospital",
+          "Telemedicine / Health Tech",
+          "Pharmaceuticals",
+          "Fitness & Gym",
+          "Mental Health & Therapy",
+          "Nutrition & Dietetics",
+          "Spa & Wellness",
+          "Medical Devices",
+          "Dental Services",
+          "Herbal / Natural Remedies",
+        ]
+      },
+      {
+        group: "Education & Coaching",
+        items: [
+          "Online Courses & E-Learning",
+          "Coaching & Mentoring",
+          "Tutoring & Academic Services",
+          "Corporate Training",
+          "EdTech Platform",
+          "Language School",
+          "Vocational / Skills Training",
+          "University / Higher Education",
+        ]
+      },
+      {
+        group: "Food & Hospitality",
+        items: [
+          "Restaurant / Fast Food",
+          "Catering Services",
+          "Food Production & Manufacturing",
+          "Bakery & Confectionery",
+          "Hotel & Hospitality",
+          "Travel & Tourism",
+          "Event Planning & Management",
+          "Bar & Nightclub",
+          "Food Tech / Delivery Platform",
+        ]
+      },
+      {
+        group: "Agriculture & Environment",
+        items: [
+          "Farming & Crop Production",
+          "Agro-processing",
+          "Livestock & Poultry",
+          "Agritech",
+          "Fisheries & Aquaculture",
+          "Renewable Energy / Solar",
+          "Environmental Services",
+          "Waste Management & Recycling",
+        ]
+      },
+      {
+        group: "Creative & Entertainment",
+        items: [
+          "Music & Entertainment",
+          "Fashion Design & Styling",
+          "Graphic Design & Branding",
+          "Gaming & Esports",
+          "Art & Crafts",
+          "Film & TV Production",
+          "Animation & Motion Graphics",
+          "Talent Management",
+        ]
+      },
+      {
+        group: "Logistics & Supply Chain",
+        items: [
+          "Logistics & Delivery",
+          "Supply Chain Management",
+          "Freight & Haulage",
+          "Import & Export",
+          "Warehousing",
+          "Last-Mile Delivery",
+        ]
+      },
+      {
+        group: "Manufacturing & Industry",
+        items: [
+          "Manufacturing (General)",
+          "Textiles & Garments",
+          "Plastics & Packaging",
+          "Printing & Publishing",
+          "Automotive",
+          "Oil & Gas",
+          "Mining & Minerals",
+          "Chemical Production",
+        ]
+      },
+      {
+        group: "Non-Profit & Social Impact",
+        items: [
+          "Non-Profit Organisation",
+          "NGO / Development",
+          "Religious Organisation",
+          "Community Development",
+          "Social Enterprise",
+        ]
+      },
+      {
+        group: "Other",
+        items: [
+          "Freelancing / Independent Contractor",
+          "Personal Brand",
+          "Other (Not Listed)",
+        ]
+      },
+    ];
+
+    /* ─────────────────────────────────────────────
+       SEARCHABLE DROPDOWN LOGIC
+    ───────────────────────────────────────────── */
+    const wrapper   = document.getElementById('industry-wrapper');
+    const trigger   = document.getElementById('industry-trigger');
+    const display   = document.getElementById('industry-display');
+    const dropdown  = document.getElementById('industry-dropdown');
+    const searchBox = document.getElementById('industry-search');
+    const list      = document.getElementById('industry-list');
+    const hidden    = document.getElementById('industry-hidden');
+
+    let selectedValue = '';
+
+    function buildList(filter = '') {
+      list.innerHTML = '';
+      const q = filter.toLowerCase().trim();
+      let anyResult = false;
+
+      INDUSTRIES.forEach(group => {
+        const matches = group.items.filter(i => i.toLowerCase().includes(q));
+        if (matches.length === 0) return;
+        anyResult = true;
+
+        if (!q) {
+          const lbl = document.createElement('li');
+          lbl.className = 'group-label';
+          lbl.textContent = group.group;
+          list.appendChild(lbl);
+        }
+
+        matches.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          if (item === selectedValue) li.classList.add('selected');
+          li.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            selectItem(item);
+          });
+          list.appendChild(li);
+        });
+      });
+
+      if (!anyResult) {
+        const li = document.createElement('li');
+        li.className = 'no-results';
+        li.innerHTML = '<i class="ri-search-line"></i> No match found. Try a different keyword.';
+        list.appendChild(li);
+      }
+    }
+
+    function selectItem(value) {
+      selectedValue = value;
+      hidden.value = value;
+      display.textContent = value;
+      trigger.classList.add('has-value');
+      closeDropdown();
+    }
+
+    function openDropdown() {
+      wrapper.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+      searchBox.value = '';
+      buildList('');
+      setTimeout(() => searchBox.focus(), 50);
+    }
+
+    function closeDropdown() {
+      wrapper.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger.addEventListener('click', () => {
+      wrapper.classList.contains('open') ? closeDropdown() : openDropdown();
+    });
+
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDropdown(); }
+      if (e.key === 'Escape') closeDropdown();
+    });
+
+    searchBox.addEventListener('input', () => buildList(searchBox.value));
+
+    searchBox.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDropdown();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!wrapper.contains(e.target)) closeDropdown();
+    });
+
+    // Build initial list
+    buildList();
+
+    /* ─────────────────────────────────────────────
+       FORM SUBMISSION
+    ───────────────────────────────────────────── */
+    const form        = document.getElementById('apply-form');
     const formWrapper = document.getElementById('form-wrapper');
-    const thankYou = document.getElementById('thank-you');
-    const submitBtn = document.getElementById('submit-btn');
-    const btnText = document.getElementById('btn-text');
-    const spinner = document.getElementById('spinner');
+    const thankYou    = document.getElementById('thank-you');
+    const submitBtn   = document.getElementById('submit-btn');
+    const btnText     = document.getElementById('btn-text');
+    const spinner     = document.getElementById('spinner');
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
+
+      // Validate industry selection
+      if (!hidden.value) {
+        trigger.style.borderColor = 'var(--secondary-color)';
+        trigger.style.boxShadow   = '0 0 0 3px rgba(255,77,109,0.15)';
+        trigger.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          trigger.style.borderColor = '';
+          trigger.style.boxShadow   = '';
+        }, 2500);
+        return;
+      }
+
       submitBtn.disabled = true;
       btnText.style.display = 'none';
       spinner.style.display = 'block';
@@ -406,15 +890,14 @@
         });
 
         if (response.ok) {
-  formWrapper.style.display = 'none';
-  thankYou.style.display = 'block';
-  document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth' });
-  
-  // Redirect to Calendly after 3 seconds or should i change it to one? SHOW HIM TO CONFIRM or should i just chaneg it to  seconds so h
-  setTimeout(() => {
-    window.location.href = 'https://calendly.com/main-oeaglobal/30min';
-  }, 3000);
-} else {
+          formWrapper.style.display = 'none';
+          thankYou.style.display = 'block';
+          document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth' });
+
+          setTimeout(() => {
+            window.location.href = 'https://calendly.com/main-oeaglobal/30min';
+          }, 3000);
+        } else {
           throw new Error('Server error');
         }
       } catch (err) {
