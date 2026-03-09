@@ -476,16 +476,10 @@ nav {
   padding: 2.5rem;
   border-radius: 16px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
-  transform: none !important;
-  transition: none !important;
-}
-
-.what-we-do__card:hover {
-  transform: none !important;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05) !important;
 }
 
 .what-we-do__card::before {
@@ -496,6 +490,11 @@ nav {
   width: 100%;
   height: 4px;
   background: var(--gradient-primary);
+}
+
+.what-we-do__card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
 .what-we-do__card h3 {
@@ -1409,12 +1408,12 @@ nav {
           <ul class="footer__links">
             <li>
               <a href="#">
-                <span><i class="ri-phone-fill"></i></span> 09130532678
+                <span><i class="ri-phone-fill"></i></span> 0810555585
               </a>
             </li>
             <li>
               <a href="#">
-                <span><i class="ri-mail-fill"></i></span> <span class="__cf_email__" data-cfemail="2a474b434404454f4b4d4645484b466a4d474b434604494547">[email&#160;protected]</span>
+                <span><i class="ri-mail-fill"></i></span> main.oeaglobal@gmail.com
               </a>
             </li>
             <li>
@@ -1430,7 +1429,7 @@ nav {
       </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       // Initialize AOS (Animate On Scroll to scroll automatically(makes the site more slick))
       AOS.init({
@@ -1537,6 +1536,16 @@ nav {
         });
       }
       
-      // Initial ch
+      // Initial check
+      checkFadeIn();
+      
+      // Listen for scroll events like fade-in and fade-out when page is being reloaded
+      window.addEventListener('scroll', checkFadeIn);
+    </script>
+  </body>
+</html>
+
+
+
 
 
