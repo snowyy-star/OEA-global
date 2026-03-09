@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="icon" type="image/png" sizes="32x32" href="/Favicon 2.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="/Favicon-32x32.png">
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>OEA Global | Olufemi Emmanuel Akindele Global</title>
@@ -479,7 +479,13 @@ nav {
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
-  /* No hover/transition — hover effect removed as requested */
+  transform: none !important;
+  transition: none !important;
+}
+
+.what-we-do__card:hover {
+  transform: none !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05) !important;
 }
 
 .what-we-do__card::before {
@@ -1403,12 +1409,12 @@ nav {
           <ul class="footer__links">
             <li>
               <a href="#">
-                <span><i class="ri-phone-fill"></i></span> 09130536278
+                <span><i class="ri-phone-fill"></i></span> 0810555585
               </a>
             </li>
             <li>
               <a href="#">
-                <span><i class="ri-mail-fill"></i></span> main.oeaglobal@gmail.com
+                <span><i class="ri-mail-fill"></i></span> <span class="__cf_email__" data-cfemail="2a474b434404454f4b4d4645484b466a4d474b434604494547">[email&#160;protected]</span>
               </a>
             </li>
             <li>
@@ -1420,11 +1426,11 @@ nav {
         </div>
       </div>
       <div class="footer__bar">
-        Copyright © 2026 OEA Global. All rights reserved.
+        Copyright © 2025 OEA Global. All rights reserved.
       </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       // Initialize AOS (Animate On Scroll to scroll automatically(makes the site more slick))
       AOS.init({
@@ -1531,13 +1537,4 @@ nav {
         });
       }
       
-      // Initial check
-      checkFadeIn();
-      
-      // Listen for scroll events like fade-in and fade-out when page is being reloaded
-      window.addEventListener('scroll', checkFadeIn);
-    </script>
-  </body>
-</html>
-
-
+      // Initial ch
