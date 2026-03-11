@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+<title>About Us | OEA Global</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+:root{--primary-color:#0066FF;--secondary-color:#FF4D6D;--accent-color:#00D4AA;--text-dark:#1A1D29;--text-light:#5A5F7D;--extra-light:#F7F9FC;--white:#FFFFFF;--background:#FFFFFF;--surface:#F0F4FF;--border:#E2E8F0;--gradient-primary:linear-gradient(135deg,#0066FF 0%,#00D4AA 100%);--gradient-secondary:linear-gradient(135deg,#FF4D6D 0%,#FF8E4F 100%);--max-width:1200px;}
+@media(prefers-color-scheme:dark){:root{--primary-color:#4DA6FF;--secondary-color:#FF6B8A;--accent-color:#33E0C9;--text-dark:#E2E8F0;--text-light:#94A3B8;--extra-light:#1A223D;--white:#1A223D;--background:#0F1425;--surface:#1E293B;--border:#2D3748;--gradient-primary:linear-gradient(135deg,#4DA6FF 0%,#33E0C9 100%);--gradient-secondary:linear-gradient(135deg,#FF6B8A 0%,#FFA27A 100%);}}
+*{padding:0;margin:0;box-sizing:border-box;transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .3s ease;}
+body{background-color:var(--background);color:var(--text-dark);font-family:"Plus Jakarta Sans",sans-serif;}
+h1,h2,h3,h4,h5,h6{font-weight:700;line-height:1.2;}
+img{display:block;width:100%;}
+a{text-decoration:none;transition:.3s;}
+ul{list-style:none;}
+html,body{scroll-behavior:smooth;}
+.btn{padding:.875rem 2rem;outline:none;border:none;font-size:1rem;font-weight:600;font-family:"Plus Jakarta Sans",sans-serif;white-space:nowrap;color:var(--white);background:var(--gradient-primary);border-radius:8px;transition:all .3s ease;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;box-shadow:0 4px 15px rgba(0,102,255,.2);position:relative;overflow:hidden;}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:.5s;}
+.btn:hover::before{left:100%;}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,102,255,.3);}
+.btn-secondary{background:var(--white);color:var(--primary-color);border:1px solid var(--primary-color);}
+.btn-secondary:hover{background:var(--primary-color);color:var(--white);}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+@media(prefers-color-scheme:dark){nav{background:rgba(15,20,37,.95);}}
+.nav__logo img{height:80px;width:auto;object-fit:contain;display:block;}
+.nav__right{display:flex;align-items:center;gap:2rem;}
+.nav__links{display:none;list-style:none;margin:0;padding:0;}
+.nav__btns{display:none;}
+.nav__menu__btn{display:block;font-size:1.8rem;color:var(--text-dark);cursor:pointer;background:none;border:none;}
+
+/* FIXED MOBILE MENU STYLES - Complete overhaul */
+@media(max-width:768px){
+  .nav__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 6rem 1.5rem 2rem;
+    background: var(--surface) !important; /* Force surface color */
+    backdrop-filter: blur(20px);
+    border-left: 1px solid var(--border);
+    transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+    z-index: 1000;
+    box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+  }
+  
+  .nav__links.open {
+    right: 0;
+  }
+  
+  .nav__links a {
+    color: var(--text-dark) !important; /* Force text color */
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    background: rgba(var(--primary-color-rgb), 0.1);
+    display: block;
+    transition: all 0.3s ease;
+  }
+  
+  .nav__links a:hover {
+    background: var(--primary-color);
+    color: var(--white) !important;
+    transform: translateX(5px);
+  }
+  
+  /* Dark mode specific overrides */
+  @media(prefers-color-scheme:dark){
+    .nav__links {
+      background: var(--surface) !important;
+      border-left-color: var(--border);
+    }
+    
+    .nav__links a {
+      color: var(--text-dark) !important;
+      background: rgba(77, 166, 255, 0.15); /* Using primary color with opacity */
+    }
+    
+    .nav__links a:hover {
+      background: var(--primary-color);
+      color: var(--white) !important;
+    }
+  }
+}
+
+/* Add RGB version of primary color for opacity usage */
+:root {
+  --primary-color-rgb: 0, 102, 255;
+}
+@media(prefers-color-scheme:dark){
+  :root {
+    --primary-color-rgb: 77, 166, 255;
+  }
+}
+
+@media(min-width:769px){
+  .nav__menu__btn{display:none !important;}
+  .nav__links{display:flex !important;align-items:center;gap:2.5rem;}
+  .nav__links a{color:var(--text-light);font-weight:600;font-size:1rem;white-space:nowrap;}
+  .nav__links a:hover{color:var(--primary-color);}
+  .nav__btns{display:block;}
+  .nav__btns .btn{padding:.6rem 1.5rem;font-size:.95rem;}
+}
+.section__container{max-width:var(--max-width);margin:auto;padding:6rem 1rem;}
+.section__header{font-size:3rem;font-weight:800;color:var(--text-dark);text-align:center;margin-bottom:1.5rem;line-height:1.1;}
+.section__subheader{font-size:1.25rem;font-weight:500;color:var(--text-dark);text-align:center;max-width:800px;margin:0 auto 3rem;line-height:1.6;}
+.section__description{font-size:1.1rem;font-weight:500;color:var(--text-light);line-height:1.7;}
+.footer__container{display:grid;grid-template-columns:1fr;gap:3rem;background-color:var(--surface);padding:4rem 1rem;}
+@media(min-width:768px){.footer__container{grid-template-columns:repeat(4,1fr);}}
+.footer__col:first-child{grid-column:1/-1;}
+@media(min-width:768px){.footer__col:first-child{grid-column:1/3;}}
+.footer__logo{margin-bottom:1.5rem;}
+.footer__col .section__description{margin-bottom:2rem;text-align:left;}
+.footer__col h4{margin-bottom:1.5rem;font-size:1.2rem;font-weight:700;color:var(--text-dark);}
+.footer__socials{display:flex;align-items:center;gap:.75rem;}
+.footer__socials a{font-size:1.25rem;color:var(--primary-color);border:1px solid var(--primary-color);border-radius:50%;display:flex;align-items:center;justify-content:center;width:40px;height:40px;transition:all .3s ease;}
+.footer__socials a:hover{color:var(--white);background-color:var(--primary-color);transform:translateY(-3px);}
+.footer__links{display:grid;gap:1rem;}
+.footer__links a{font-size:1rem;font-weight:500;color:var(--text-light);}
+.footer__links a span{margin-right:.5rem;font-size:1.2rem;color:var(--primary-color);}
+.footer__bar{padding:1.5rem;font-size:.9rem;font-weight:500;color:var(--text-light);text-align:center;background-color:var(--white);border-top:1px solid var(--border);}
+.about-hero{padding-top:10rem;padding-bottom:5rem;background:var(--background);text-align:center;position:relative;overflow:hidden;}
+.about-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,102,255,.08),transparent);pointer-events:none;}
+.about-hero h1{font-size:3.5rem;font-weight:800;color:var(--text-dark);margin-bottom:1.5rem;}
+@media(min-width:768px){.about-hero h1{font-size:4.5rem;}}
+.about-hero h1 span{background:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.about-hero p{font-size:1.25rem;color:var(--text-light);max-width:700px;margin:0 auto;line-height:1.7;}
+.mission-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-top:3rem;}
+@media(min-width:768px){.mission-grid{grid-template-columns:repeat(2,1fr);}}
+.mission-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.05);transition:transform .3s ease,box-shadow .3s ease;}
+.mission-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--gradient-primary);}
+.mission-card:nth-child(2)::before{background:var(--gradient-secondary);}
+.mission-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,0,0,.1);}
+.mission-card .icon{font-size:2.5rem;margin-bottom:1.5rem;color:var(--primary-color);}
+.mission-card:nth-child(2) .icon{color:var(--secondary-color);}
+.mission-card h3{font-size:1.5rem;margin-bottom:1rem;color:var(--text-dark);}
+.mission-card p{color:var(--text-light);line-height:1.7;}
+.story{background:var(--extra-light);}
+.story-inner{display:grid;grid-template-columns:1fr;gap:4rem;align-items:center;}
+@media(min-width:768px){.story-inner{grid-template-columns:1fr 1fr;}}
+.story-text h2{font-size:2.5rem;font-weight:800;margin-bottom:1.5rem;color:var(--text-dark);}
+.story-text p{color:var(--text-light);line-height:1.8;margin-bottom:1.2rem;font-size:1.05rem;}
+.story-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.stat-box{background:var(--white);border-radius:16px;padding:1.5rem;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.05);border:1px solid var(--border);}
+.stat-box .number{font-size:2.5rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.stat-box .label{font-size:.9rem;color:var(--text-light);margin-top:.25rem;font-weight:600;}
+.values-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-top:3rem;}
+@media(min-width:768px){.values-grid{grid-template-columns:repeat(3,1fr);}}
+.value-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.05);transition:transform .3s ease;}
+.value-card:hover{transform:translateY(-6px);}
+.value-card i{font-size:2.5rem;margin-bottom:1rem;background:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;}
+.value-card h4{font-size:1.2rem;margin-bottom:.75rem;color:var(--text-dark);}
+.value-card p{color:var(--text-light);font-size:.95rem;line-height:1.6;}
+
+/* Updated Team Section with Image Support */
+.team{background:var(--extra-light);}
+.team-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-top:3rem;}
+@media(min-width:640px){.team-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1024px){.team-grid{grid-template-columns:repeat(3,1fr);}}
+
+.team-card{
+  background:var(--white);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,.05);
+  border:1px solid var(--border);
+  transition:transform .3s ease;
+  text-align:center;
+}
+.team-card:hover{transform:translateY(-8px);}
+
+.team-avatar{
+  width:100%;
+  height:250px;
+  position:relative;
+  overflow:hidden;
+  background:var(--gradient-primary); /* Fallback background */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.team-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  transition:transform .5s ease;
+}
+
+.team-card:hover .team-avatar img{
+  transform:scale(1.05);
+}
+
+.team-avatar i{
+  font-size:4rem;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:100%;
+}
+
+/* Different gradient backgrounds for fallback icons */
+.team-card:nth-child(2) .team-avatar{background:transparent;}
+.team-card:nth-child(2) .team-avatar i{background:var(--gradient-secondary);}
+.team-card:nth-child(3) .team-avatar{background:transparent;}
+.team-card:nth-child(3) .team-avatar i{background:linear-gradient(135deg,#00D4AA,#0066FF);}
+
+.team-info{padding:1.5rem;}
+.team-info h4{font-size:1.2rem;color:var(--text-dark);margin-bottom:.25rem;}
+.team-info .role{font-size:.9rem;color:var(--primary-color);font-weight:600;margin-bottom:.75rem;}
+.team-info p{font-size:.9rem;color:var(--text-light);line-height:1.6;}
+
+.about-cta{background:var(--gradient-primary);color:white;text-align:center;padding:5rem 1rem;}
+.about-cta h2{font-size:2.5rem;font-weight:800;margin-bottom:1rem;}
+.about-cta p{font-size:1.15rem;margin-bottom:2rem;opacity:.9;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-white{background:white;color:var(--primary-color);border:none;}
+.btn-white:hover{background:var(--extra-light);transform:translateY(-3px);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav__logo">
+    <a href="Index.html"><img src="OEA_Global_1_094320-removebg-preview.png" alt="OEA Global"></a>
+  </div>
+  <div class="nav__right">
+    <ul class="nav__links" id="nav-links">
+      <li><a href="Index.html">Home</a></li>
+      <li><a href="about-us.html">About Us</a></li>
+      <li><a href="Contact-us.html">Contact Us</a></li>
+    </ul>
+    <div class="nav__btns">
+      <a href="https://calendly.com/main-oeaglobal/30min" target="_blank">
+        <button class="btn"><i class="ri-calendar-event-line"></i> Book a Growth Call</button>
+      </a>
+    </div>
+    <div class="nav__menu__btn" id="menu-btn"><i class="ri-menu-line"></i></div>
+  </div>
+</nav>
+
+<section class="about-hero section__container">
+  <div data-aos="fade-up">
+    <h1>We Are <span>OEA Global</span></h1>
+    <p>A team of growth architects, marketers, and technologists obsessed with helping ambitious businesses scale smarter, using AI-powered systems that actually work.</p>
+  </div>
+</section>
+
+<section class="section__container">
+  <h2 class="section__header" data-aos="fade-up">What Drives Us</h2>
+  <div class="mission-grid">
+    <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="icon"><i class="ri-rocket-2-line"></i></div>
+      <h3>Our Mission</h3>
+      <p>To democratise world-class marketing for growth-focused businesses. We build and operate the systems that help you compete, and win, regardless of your size.</p>
+    </div>
+    <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="icon"><i class="ri-eye-line"></i></div>
+      <h3>Our Vision</h3>
+      <p>A world where every ambitious business has access to intelligent, scalable marketing infrastructure — eliminating guesswork and replacing it with predictable, compounding growth.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section__container story">
+  <div class="story-inner">
+    <div class="story-text" data-aos="fade-right">
+      <h2>Our Story</h2>
+      <p>OEA Global was founded by Olufemi Emmanuel Akindele after years of watching great businesses struggle not because of their product, but because of chaotic, disconnected marketing that never built real momentum.</p>
+      <p>We started with a single question: <strong>What if a business had access to a fully integrated growth team powered by AI and strategy?</strong> That question became our obsession, and OEA Global was born.</p>
+      <p>Today, we partner with startups, SMEs, and fast-growing brands across Africa and beyond to build marketing systems that compound over time, attract the right customers, and scale predictably.</p>
+    </div>
+    <div class="story-stats" data-aos="fade-left">
+      <div class="stat-box"><div class="number">50+</div><div class="label">Clients Served</div></div>
+      <div class="stat-box"><div class="number">3x</div><div class="label">Avg. Lead Growth</div></div>
+      <div class="stat-box"><div class="number">5+</div><div class="label">Years Experience</div></div>
+      <div class="stat-box"><div class="number">12+</div><div class="label">Industries Served</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section__container">
+  <h2 class="section__header" data-aos="fade-up">Our Core Values</h2>
+  <p class="section__subheader" data-aos="fade-up">Everything we do is guided by these principles.</p>
+  <div class="values-grid">
+    <div class="value-card" data-aos="fade-up" data-aos-delay="100"><i class="ri-shield-check-line"></i><h4>Integrity First</h4><p>We say what we mean and deliver what we promise. No fluff, no vanity metrics — just honest results.</p></div>
+    <div class="value-card" data-aos="fade-up" data-aos-delay="200"><i class="ri-line-chart-line"></i><h4>Growth Obsessed</h4><p>We're not satisfied with incremental. We think in systems, compounding returns, and long-term momentum.</p></div>
+    <div class="value-card" data-aos="fade-up" data-aos-delay="300"><i class="ri-brain-line"></i><h4>AI-Driven Thinking</h4><p>We use technology as leverage — automating the repetitive so we can focus on what moves the needle.</p></div>
+    <div class="value-card" data-aos="fade-up" data-aos-delay="400"><i class="ri-team-line"></i><h4>True Partnership</h4><p>We embed with your business like an internal team. Your wins are our wins — full stop.</p></div>
+    <div class="value-card" data-aos="fade-up" data-aos-delay="500"><i class="ri-global-line"></i><h4>African Excellence</h4><p>Built in Africa, built for the world. We bring global-standard marketing to businesses right here at home.</p></div>
+    <div class="value-card" data-aos="fade-up" data-aos-delay="600"><i class="ri-lightbulb-line"></i><h4>Constant Innovation</h4><p>Marketing never stands still, and neither do we. We test, learn, and evolve — always.</p></div>
+  </div>
+</section>
+
+<!-- Updated Team Section with Images -->
+<section class="section__container team">
+  <h2 class="section__header" data-aos="fade-up">Meet the Team</h2>
+  <p class="section__subheader" data-aos="fade-up">The people behind your growth.</p>
+  <div class="team-grid">
+    <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="team-avatar">
+        <!-- Replace with actual photo path - e.g., "images/olufemi.jpg" -->
+        <img src="/FB_IMG_17657193662499404.jpg" alt="Olufemi E. Akindele" onerror="this.style.display='none'; this.parentNode.querySelector('i').style.display='flex';">
+        <i class="ri-user-3-line"></i>
+      </div>
+      <div class="team-info">
+        <h4>Olufemi E. Akindele</h4>
+        <div class="role">Founder &amp; CEO</div>
+        <p>Growth strategist with 5+ years helping businesses scale through AI-powered marketing systems.</p>
+      </div>
+    </div>
+    <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="team-avatar">
+        <!-- Replace with actual photo path -->
+        <img src="/FB_IMG_17657193662499404.jpg" alt="Strategy Lead" onerror="this.style.display='none'; this.parentNode.querySelector('i').style.display='flex';">
+        <i class="ri-user-3-line"></i>
+      </div>
+      <div class="team-info">
+        <h4>Strategy Lead</h4>
+        <div class="role">Head of Growth Strategy</div>
+        <p>Expert in full-funnel development and performance marketing across global markets.</p>
+      </div>
+    </div>
+    <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="team-avatar">
+        <!-- Replace with actual photo path -->
+        <img src="path/to/tech-lead-photo.jpg" alt="Tech & AI Lead" onerror="this.style.display='none'; this.parentNode.querySelector('i').style.display='flex';">
+        <i class="ri-user-3-line"></i>
+      </div>
+      <div class="team-info">
+        <h4>Tech &amp; AI Lead</h4>
+        <div class="role">Head of Marketing Automation</div>
+        <p>Builds the AI systems and automations that make OEA clients operate smarter and faster.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-cta" data-aos="fade-up">
+  <h2>Ready to Grow With Us?</h2>
+  <p>Book a free strategy call and let's map out your growth together.</p>
+  <div class="cta-btns">
+    <a href="https://calendly.com/main-oeaglobal/30min" target="_blank"><button class="btn btn-white"><i class="ri-calendar-event-line"></i> Book a Growth Call</button></a>
+    <a href="contact.html"><button class="btn" style="background:rgba(255,255,255,.15);border:2px solid white;"><i class="ri-mail-line"></i> Contact Us</button></a>
+  </div>
+</section>
+
+<footer>
+  <div class="section__container footer__container">
+    <div class="footer__col">
+      <div class="footer__logo"><h2>OEA Global</h2></div>
+      <p class="section__description">We build and operate AI-powered marketing systems that help businesses attract customers, increase revenue, and scale with clarity and confidence.</p>
+      <div class="footer__socials">
+        <a href="https://www.facebook.com/share/17YoTxSUCh/"><i class="ri-facebook-fill"></i></a>
+        <a href="#"><i class="ri-twitter-fill"></i></a>
+        <a href="https://www.instagram.com/oea.global"><i class="ri-instagram-line"></i></a>
+        <a href="#"><i class="ri-linkedin-fill"></i></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>Quick Links</h4>
+      <ul class="footer__links">
+        <li><a href="Index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Services</h4>
+      <ul class="footer__links">
+        <li><a href="#">Growth Partner Program</a></li>
+        <li><a href="#">Marketing Strategy</a></li>
+        <li><a href="#">AI-Powered Marketing</a></li>
+        <li><a href="#">Revenue Engine</a></li>
+        <li><a href="#">Performance Marketing</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Contact Us</h4>
+      <ul class="footer__links">
+        <li><a href="#"><span><i class="ri-phone-fill"></i></span> 0810555585</a></li>
+        <li><a href="#"><span><i class="ri-mail-fill"></i></span> main.oeaglobal@gmail.com</a></li>
+        <li><a href="#"><span><i class="ri-map-pin-2-fill"></i></span> PortHarcourt, Rivers State, Nigeria</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bar">Copyright &copy; 2026 OEA Global. All rights reserved.</div>
+</footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({duration:1000,once:true,offset:100});
+const menuBtn=document.getElementById("menu-btn");
+const navLinks=document.getElementById("nav-links");
+const menuBtnIcon=menuBtn.querySelector("i");
+
+function closeMenu() {
+  navLinks.classList.remove("open");
+  menuBtnIcon.setAttribute("class", "ri-menu-line");
+}
+
+menuBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  navLinks.classList.toggle("open");
+  menuBtnIcon.setAttribute("class", navLinks.classList.contains("open") ? "ri-close-line" : "ri-menu-line");
+});
+
+// Close menu when clicking a link
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) {
+    closeMenu();
+  }
+});
+
+// Prevent clicks inside menu from closing it (when clicking on empty space)
+navLinks.addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+</script>
+</body>
+</html>

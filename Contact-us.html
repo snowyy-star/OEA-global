@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- AOS (Animate on Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+  <title>About Us | OEA Global</title>
+  <style>
+    /* ----- RESET & FONTS ----- */
+    @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--text-dark);
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+    }
+
+    /* ----- CSS VARIABLES (LIGHT & DARK) ----- */
+    :root {
+      --primary-color: #0066FF;
+      --primary-color-rgb: 0, 102, 255;
+      --secondary-color: #FF4D6D;
+      --accent-color: #00D4AA;
+      --text-dark: #1A1D29;
+      --text-light: #5A5F7D;
+      --extra-light: #F7F9FC;
+      --white: #FFFFFF;
+      --background: #FFFFFF;
+      --surface: #F0F4FF;
+      --border: #E2E8F0;
+      --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+      --gradient-secondary: linear-gradient(135deg, #FF4D6D 0%, #FF8E4F 100%);
+      --max-width: 1200px;
+    }
+
+    /* DARK MODE (prefers-color-scheme) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-color: #4DA6FF;
+        --primary-color-rgb: 77, 166, 255;
+        --secondary-color: #FF6B8A;
+        --accent-color: #33E0C9;
+        --text-dark: #E2E8F0;
+        --text-light: #94A3B8;
+        --extra-light: #1A223D;
+        --white: #1A223D;
+        --background: #0F1425;
+        --surface: #1E293B;
+        --border: #2D3748;
+        --gradient-primary: linear-gradient(135deg, #4DA6FF 0%, #33E0C9 100%);
+        --gradient-secondary: linear-gradient(135deg, #FF6B8A 0%, #FFA27A 100%);
+      }
+    }
+
+    /* ----- UTILITY CLASSES ----- */
+    .btn {
+      padding: 0.875rem 2rem;
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      white-space: nowrap;
+      color: var(--white);
+      background: var(--gradient-primary);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(0, 102, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,102,255,0.3);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-color);
+      color: var(--white);
+    }
+
+    .section__container {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 6rem 1rem;
+    }
+
+    .section__header {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .section__subheader {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+
+    .section__description {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ----- NAVIGATION (FIXED WITH PROPER MOBILE MENU) ----- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      nav {
+        background: rgba(15,20,37,0.95);
+      }
+    }
+
+    .nav__logo img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav__right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav__links {
+      display: none;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__btns {
+      display: none;
+    }
+
+    .nav__menu__btn {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      cursor: pointer;
+      background: none;
+      border: none;
+      z-index: 1001;
+    }
+
+    /* FIXED MOBILE MENU STYLES */
+    @media (max-width: 768px) {
+      .nav__links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2rem;
+        padding: 6rem 1.5rem 2rem;
+        background: var(--surface) !important;
+        backdrop-filter: blur(20px);
+        border-left: 1px solid var(--border);
+        transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+        z-index: 1000;
+        box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+      }
+
+      .nav__links.open {
+        right: 0;
+      }
+
+      .nav__links a {
+        color: var(--text-dark) !important;
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        width: 100%;
+        text-align: center;
+        background: rgba(var(--primary-color-rgb), 0.1);
+        display: block;
+        transition: all 0.3s ease;
+      }
+
+      .nav__links a:hover {
+        background: var(--primary-color);
+        color: var(--white) !important;
+        transform: translateX(5px);
+      }
+
+      /* Dark mode specific overrides */
+      @media (prefers-color-scheme: dark) {
+        .nav__links {
+          background: var(--surface) !important;
+        }
+        
+        .nav__links a {
+          background: rgba(var(--primary-color-rgb), 0.15);
+        }
+      }
+    }
+
+    @media (min-width: 769px) {
+      .nav__menu__btn {
+        display: none !important;
+      }
+
+      .nav__links {
+        display: flex !important;
+        align-items: center;
+        gap: 2.5rem;
+      }
+
+      .nav__links a {
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+
+      .nav__links a:hover {
+        color: var(--primary-color);
+      }
+
+      .nav__btns {
+        display: block;
+      }
+
+      .nav__btns .btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* ----- FOOTER ----- */
+    .footer__container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      background-color: var(--surface);
+      padding: 4rem 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer__container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .footer__col:first-child {
+      grid-column: 1 / -1;
+    }
+
+    @media (min-width: 768px) {
+      .footer__col:first-child {
+        grid-column: 1 / 3;
+      }
+    }
+
+    .footer__logo {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer__col .section__description {
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .footer__col h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .footer__socials {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .footer__socials a {
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .footer__socials a:hover {
+      color: var(--white);
+      background-color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .footer__links {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .footer__links a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    .footer__links a span {
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+
+    .footer__bar {
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-light);
+      text-align: center;
+      background-color: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ----- CONTENT STYLES ----- */
+    .contact-hero {
+      padding-top: 10rem;
+      padding-bottom: 4rem;
+      text-align: center;
+      background: var(--background);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,102,255,0.08), transparent);
+      pointer-events: none;
+    }
+
+    .contact-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .contact-hero h1 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .contact-hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    @media (min-width: 900px) {
+      .contact-layout {
+        grid-template-columns: 1fr 1.6fr;
+      }
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .info-icon {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      border-radius: 14px;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: white;
+    }
+
+    .info-text h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .info-text p, .info-text a {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .info-text a:hover {
+      color: var(--primary-color);
+    }
+
+    .socials-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .socials-row a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .socials-row a:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .contact-form-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.07);
+    }
+
+    .contact-form-wrap h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-form-wrap .subtitle {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.875rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 1rem;
+      color: var(--text-dark);
+      background: var(--background);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 140px;
+    }
+
+    .form-submit {
+      margin-top: 1.5rem;
+    }
+
+    .form-submit .btn {
+      width: 100%;
+      justify-content: center;
+      font-size: 1.05rem;
+      padding: 1rem;
+    }
+
+    .success-msg {
+      display: none;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid var(--accent-color);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .map-strip {
+      background: var(--extra-light);
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    .map-embed {
+      margin-top: 2rem;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 340px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .faq-section {
+      background: var(--background);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-dark);
+      transition: background 0.2s ease;
+    }
+
+    .faq-question:hover {
+      background: var(--extra-light);
+    }
+
+    .faq-question i {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+
+    .faq-answer p {
+      padding: 0 1.5rem 1.25rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-question i {
+      transform: rotate(45deg);
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav__logo">
+      <a href="index.html"><img src="OEA_Global_1_094320-removebg-preview.png" alt="OEA Global"></a>
+    </div>
+    <div class="nav__right">
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="Contact-us.html">Contact Us</a></li>
+      </ul>
+      <div class="nav__btns">
+        <a href="https://calendly.com/main-oeaglobal/30min" target="_blank">
+          <button class="btn"><i class="ri-calendar-event-line"></i> Book a Growth Call</button>
+        </a>
+      </div>
+      <div class="nav__menu__btn" id="menu-btn"><i class="ri-menu-line"></i></div>
+    </div>
+  </nav>
+
+  <section class="contact-hero section__container">
+    <div data-aos="fade-up">
+      <h1>About <span>Us</span></h1>
+      <p>We build AI-powered marketing systems that help businesses scale with clarity and confidence.</p>
+    </div>
+  </section>
+
+  <section class="section__container" style="padding-top:2rem;">
+    <div class="contact-layout">
+      <div class="contact-info" data-aos="fade-right">
+        <div class="info-card">
+          <div class="info-icon"><i class="ri-eye-line"></i></div>
+          <div class="info-text"><h4>Our Mission</h4><p>Empower businesses with intelligent marketing systems that deliver predictable growth.</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon" style="background:var(--gradient-secondary);"><i class="ri-heart-line"></i></div>
+          <div class="info-text"><h4>Our Values</h4><p>Transparency, innovation, and client success above everything.</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon" style="background:linear-gradient(135deg,#00D4AA,#0066FF);"><i class="ri-team-line"></i></div>
+          <div class="info-text"><h4>The Team</h4><p>Strategists, engineers and creatives working remotely across Africa.</p></div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap" data-aos="fade-left">
+        <h3>Who we are</h3>
+        <p class="subtitle">OEA Global was founded to bridge the gap between ambitious companies and modern marketing technology.</p>
+        <div style="color: var(--text-light); line-height:1.8;">
+          <p>We combine AI, automation, and human creativity to build marketing engines that don't just generate leads, they generate revenue. Based in Port Harcourt with clients worldwide, we operate as your remote growth team.</p>
+          <p style="margin-top:1.5rem;"><strong>Let's build something extraordinary.</strong></p>
+        </div>
+        <div class="form-submit" style="margin-top:2rem;">
+          <a href="Contact-us.html" class="btn"><i class="ri-chat-1-line"></i> Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-strip" data-aos="fade-up">
+    <h2 class="section__header">Find Us</h2>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31757.67!2d7.0498!3d4.8156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069cd8e99999999%3A0x1!2sPort+Harcourt%2C+Nigeria!5e0!3m2!1sen!2sng!4v1" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section class="section__container faq-section" data-aos="fade-up">
+    <h2 class="section__header">Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How quickly can you get started? <i class="ri-add-line"></i></div><div class="faq-answer"><p>Typically we can onboard a new client within 5–7 business days after an initial strategy call. We'll assess your current setup and build a roadmap before anything goes live.</p></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Do you work with businesses outside Nigeria? <i class="ri-add-line"></i></div><div class="faq-answer"><p>Absolutely. While we're based in Port Harcourt, Nigeria, we work with clients across Africa and internationally. All collaboration happens remotely with regular check-ins.</p></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What industries do you specialise in? <i class="ri-add-line"></i></div><div class="faq-answer"><p>We've worked across 12+ industries including tech, real estate, healthcare, e-commerce, professional services, and education. Our systems are adaptable to any growth-focused business.</p></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What does the Growth Partner Program include? <i class="ri-add-line"></i></div><div class="faq-answer"><p>It's a fully managed growth engagement — strategy, paid ads, content, automation, funnels, and analytics — all under one roof. Think of it as your outsourced marketing department.</p></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How do I book a free strategy call? <i class="ri-add-line"></i></div><div class="faq-answer"><p>Click the "Book a Growth Call" button at the top of any page, or visit <a href="https://calendly.com/main-oeaglobal/30min" style="color:var(--primary-color);">calendly.com/main-oeaglobal</a>. It's free and takes 30 minutes.</p></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="section__container footer__container">
+      <div class="footer__col">
+        <div class="footer__logo"><h2>OEA Global</h2></div>
+        <p class="section__description">We build and operate AI-powered marketing systems that help businesses attract customers, increase revenue, and scale with clarity and confidence.</p>
+        <div class="footer__socials">
+          <a href="https://www.facebook.com/share/17YoTxSUCh/"><i class="ri-facebook-fill"></i></a>
+          <a href="#"><i class="ri-twitter-fill"></i></a>
+          <a href="https://www.instagram.com/oea.global"><i class="ri-instagram-line"></i></a>
+          <a href="#"><i class="ri-linkedin-fill"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Services</h4>
+        <ul class="footer__links">
+          <li><a href="#">Growth Partner Program</a></li>
+          <li><a href="#">Marketing Strategy</a></li>
+          <li><a href="#">AI-Powered Marketing</a></li>
+          <li><a href="#">Revenue Engine</a></li>
+          <li><a href="#">Performance Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact Us</h4>
+        <ul class="footer__links">
+          <li><a href="#"><span><i class="ri-phone-fill"></i></span> 0810555585</a></li>
+          <li><a href="#"><span><i class="ri-mail-fill"></i></span> main.oeaglobal@gmail.com</a></li>
+          <li><a href="#"><span><i class="ri-map-pin-2-fill"></i></span> PortHarcourt, Rivers State, Nigeria</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bar">Copyright &copy; 2026 OEA Global. All rights reserved.</div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+
+    const menuBtn = document.getElementById("menu-btn");
+    const navLinks = document.getElementById("nav-links");
+    const menuBtnIcon = menuBtn.querySelector("i");
+
+    function closeMenu() {
+      navLinks.classList.remove("open");
+      menuBtnIcon.setAttribute("class", "ri-menu-line");
+    }
+
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle("open");
+      menuBtnIcon.setAttribute("class", navLinks.classList.contains("open") ? "ri-close-line" : "ri-menu-line");
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // Prevent clicks inside menu from closing it
+    navLinks.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      document.querySelectorAll(".faq-item").forEach(i => {
+        if (i !== item) i.classList.remove("open");
+      });
+      item.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
