@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/Favicon 2.jpg">
+<title>OEA Global | Digital Growth Agency</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap");
+
+:root {
+  --primary-color: #0066FF; --secondary-color: #FF4D6D; --accent-color: #00D4AA;
+  --text-dark: #1A1D29; --text-light: #5A5F7D; --extra-light: #F7F9FC;
+  --white: #FFFFFF; --background: #FFFFFF; --surface: #F0F4FF; --border: #E2E8F0;
+  --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+  --gradient-secondary: linear-gradient(135deg, #FF4D6D 0%, #FF8E4F 100%);
+  --max-width: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #4DA6FF; --secondary-color: #FF6B8A; --accent-color: #33E0C9;
+    --text-dark: #E2E8F0; --text-light: #94A3B8; --extra-light: #1A223D;
+    --white: #1A223D; --background: #0F1425; --surface: #1E293B; --border: #2D3748;
+    --gradient-primary: linear-gradient(135deg, #4DA6FF 0%, #33E0C9 100%);
+    --gradient-secondary: linear-gradient(135deg, #FF6B8A 0%, #FFA27A 100%);
+  }
+}
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+body { background-color: var(--background); color: var(--text-dark); font-family: "Plus Jakarta Sans", sans-serif; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; }
+html, body { scroll-behavior: smooth; }
+img { display: block; width: 100%; }
+
+/* NAV */
+.btn { padding: 0.875rem 2rem; outline: none; border: none; font-size: 1rem; font-weight: 600; font-family: "Plus Jakarta Sans", sans-serif; white-space: nowrap; color: var(--white); background: var(--gradient-primary); border-radius: 8px; transition: all 0.3s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,102,255,0.2); position: relative; overflow: hidden; }
+.btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
+.btn:hover::before { left: 100%; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,102,255,0.3); }
+
+nav { position: fixed; top: 0; width: 100%; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 80px; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+@media (prefers-color-scheme: dark) { nav { background: rgba(15,20,37,0.95); } }
+.nav__logo img { height: 80px; width: auto; object-fit: contain; display: block; }
+.nav__right { display: flex; align-items: center; gap: 2rem; }
+.nav__links { display: none; list-style: none; margin: 0; padding: 0; }
+.nav__btns { display: none; }
+.nav__menu__btn { display: block; font-size: 1.8rem; color: var(--text-dark); cursor: pointer; background: none; border: none; }
+
+@media (max-width: 768px) {
+  .nav__links { position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; display: flex !important; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1rem; padding: 6rem 1.5rem 2rem; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-left: 1px solid var(--border); transition: right 0.4s cubic-bezier(0.4,0,0.2,1); z-index: 1000; }
+  @media (prefers-color-scheme: dark) { .nav__links { background: rgba(15,20,37,0.95); } }
+  .nav__links.open { right: 0; }
+  .nav__links li { width: 100%; }
+  .nav__links a { color: var(--text-dark); font-size: 1.2rem; font-weight: 600; padding: 1rem 1.5rem; border-radius: 8px; width: 100%; text-align: center; background: rgba(0,102,255,0.05); display: block; }
+  .nav__links a:hover { background: rgba(0,102,255,0.1); }
+}
+@media (min-width: 769px) {
+  .nav__menu__btn { display: none !important; }
+  .nav__links { display: flex !important; align-items: center; gap: 2.5rem; }
+  .nav__links a { color: var(--text-light); font-weight: 600; font-size: 1rem; white-space: nowrap; }
+  .nav__links a:hover { color: var(--primary-color); }
+  .nav__btns { display: block; }
+  .nav__btns .btn { padding: 0.6rem 1.5rem; font-size: 0.95rem; }
+}
+
+/* BLOG HERO */
+.blog-hero {
+  padding-top: 120px;
+  padding-bottom: 4rem;
+  text-align: center;
+  background: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+.blog-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,102,255,0.07), transparent);
+  pointer-events: none;
+}
+.blog-hero__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+.blog-hero h1 {
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+.blog-hero h1 span {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.blog-hero p {
+  font-size: 1.15rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+/* CATEGORY FILTERS */
+.blog-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0 1rem 3rem;
+}
+.filter-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,102,255,0.25);
+}
+
+/* FEATURED POST */
+.blog-container { max-width: var(--max-width); margin: 0 auto; padding: 0 1rem 6rem; }
+
+.featured-post {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  margin-bottom: 4rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.featured-post:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+@media (min-width: 768px) { .featured-post { grid-template-columns: 1.2fr 1fr; } }
+
+.featured-post__image {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+}
+.featured-post__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.featured-post:hover .featured-post__image img { transform: scale(1.05); }
+
+.featured-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: var(--gradient-secondary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.featured-post__content {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.post-category {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+.featured-post__content h2 {
+  font-family: "Fraunces", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+.featured-post__content p {
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.post-meta span { display: flex; align-items: center; gap: 0.3rem; }
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: gap 0.3s ease;
+}
+.read-more:hover { gap: 0.75rem; }
+
+/* BLOG GRID */
+.blog-section-title {
+  font-family: "Fraunces", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.blog-section-title::before {
+  content: '';
+  width: 4px;
+  height: 28px;
+  background: var(--gradient-primary);
+  border-radius: 4px;
+  display: block;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 640px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.blog-card {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.blog-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+
+.blog-card__image {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+}
+.blog-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.blog-card:hover .blog-card__image img { transform: scale(1.08); }
+
+.card-category-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  color: white;
+}
+.badge-blue { background: var(--primary-color); }
+.badge-red { background: var(--secondary-color); }
+.badge-green { background: var(--accent-color); }
+.badge-orange { background: #FF8E4F; }
+.badge-purple { background: #7C3AED; }
+
+.blog-card__content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.blog-card__content h3 {
+  font-family: "Fraunces", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+.blog-card__content p { color: var(--text-light); font-size: 0.92rem; line-height: 1.65; margin-bottom: 1.25rem; flex: 1; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border); }
+.card-footer .post-meta { margin: 0; font-size: 0.8rem; }
+.card-read-time { font-size: 0.8rem; color: var(--text-light); display: flex; align-items: center; gap: 0.3rem; }
+
+/* NEWSLETTER */
+.newsletter {
+  background: var(--gradient-primary);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.newsletter::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+.newsletter h3 { font-family: "Fraunces", serif; font-size: 2rem; font-weight: 700; color: white; margin-bottom: 0.75rem; }
+.newsletter p { color: rgba(255,255,255,0.85); margin-bottom: 2rem; font-size: 1rem; }
+.newsletter-form { display: flex; gap: 0.75rem; max-width: 480px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+.newsletter-form input {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.875rem 1.25rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.95rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  outline: none;
+  backdrop-filter: blur(10px);
+}
+.newsletter-form input::placeholder { color: rgba(255,255,255,0.65); }
+.newsletter-form input:focus { background: rgba(255,255,255,0.25); }
+.btn-white { background: white; color: var(--primary-color); font-weight: 700; padding: 0.875rem 1.5rem; border-radius: 10px; border: none; cursor: pointer; font-family: "Plus Jakarta Sans", sans-serif; font-size: 0.95rem; transition: all 0.3s ease; }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+/* LOAD MORE */
+.load-more-wrap { text-align: center; margin-top: 3rem; }
+.btn-outline { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); padding: 0.875rem 2.5rem; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: "Plus Jakarta Sans", sans-serif; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-outline:hover { background: var(--primary-color); color: white; transform: translateY(-2px); }
+
+/* FOOTER */
+.footer__container { display: grid; grid-template-columns: 1fr; gap: 3rem; background-color: var(--surface); padding: 4rem 1rem; max-width: var(--max-width); margin: auto; }
+@media (min-width: 768px) { .footer__container { grid-template-columns: repeat(4, 1fr); } }
+.footer__col:first-child { grid-column: 1/-1; }
+@media (min-width: 768px) { .footer__col:first-child { grid-column: 1/3; } }
+.footer__logo { margin-bottom: 1.5rem; }
+.footer__col .section__description { margin-bottom: 2rem; text-align: left; font-size: 1rem; color: var(--text-light); line-height: 1.7; }
+.footer__col h4 { margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 700; color: var(--text-dark); }
+.footer__socials { display: flex; align-items: center; gap: 0.75rem; }
+.footer__socials a { font-size: 1.25rem; color: var(--primary-color); border: 1px solid var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; transition: all 0.3s ease; }
+.footer__socials a:hover { color: var(--white); background-color: var(--primary-color); transform: translateY(-3px); }
+.footer__links { display: grid; gap: 1rem; }
+.footer__links a { font-size: 1rem; font-weight: 500; color: var(--text-light); }
+.footer__links a span { margin-right: 0.5rem; font-size: 1.2rem; color: var(--primary-color); }
+.footer__bar { padding: 1.5rem; font-size: 0.9rem; font-weight: 500; color: var(--text-light); text-align: center; background-color: var(--white); border-top: 1px solid var(--border); }
+
+/* GRADIENT IMAGE PLACEHOLDERS */
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.grad-1 { background: linear-gradient(135deg, #0066FF, #00D4AA); }
+.grad-2 { background: linear-gradient(135deg, #FF4D6D, #FF8E4F); }
+.grad-3 { background: linear-gradient(135deg, #7C3AED, #4DA6FF); }
+.grad-4 { background: linear-gradient(135deg, #00D4AA, #0066FF); }
+.grad-5 { background: linear-gradient(135deg, #FF8E4F, #FF4D6D); }
+.grad-6 { background: linear-gradient(135deg, #1A1D29, #0066FF); }
+.grad-7 { background: linear-gradient(135deg, #00D4AA, #7C3AED); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav__logo">
+    <a href="/"><img src="/OEA_Global_1_094320-removebg-preview.png" alt="OEA Global"></a>
+  </div>
+  <div class="nav__right">
+    <ul class="nav__links" id="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about-us">About Us</a></li>
+      <li><a href="/Contact-us">Contact Us</a></li>
+    </ul>
+    <div class="nav__btns">
+      <a href="https://calendly.com/main-oeaglobal/30min" target="_blank">
+        <button class="btn"><i class="ri-calendar-event-line"></i> Book a Growth Call</button>
+      </a>
+    </div>
+    <div class="nav__menu__btn" id="menu-btn"><i class="ri-menu-line"></i></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="blog-hero__tag"><i class="ri-quill-pen-line"></i> Insights & Strategy</div>
+  <h1>Growth <span>Insights</span><br>That Actually Work</h1>
+  <p>No fluff. No vanity metrics. Just battle-tested strategies, AI marketing trends, and growth frameworks from the OEA Global team.</p>
+</section>
+
+<!-- CATEGORY FILTERS -->
+<div class="blog-filters">
+  <button class="filter-btn active">All Posts</button>
+  <button class="filter-btn">AI Marketing</button>
+  <button class="filter-btn">SEO</button>
+  <button class="filter-btn">Paid Ads</button>
+  <button class="filter-btn">Social Media</button>
+  <button class="filter-btn">Business Growth</button>
+  <button class="filter-btn">Case Studies</button>
+</div>
+
+<!-- BLOG CONTENT -->
+<div class="blog-container">
+
+  <!-- FEATURED POST -->
+  <article class="featured-post" data-aos="fade-up">
+    <div class="featured-post__image">
+      <div class="img-placeholder grad-1">🤖</div>
+      <span class="featured-badge">⚡ Featured</span>
+    </div>
+    <div class="featured-post__content">
+      <div class="post-category">AI Marketing</div>
+      <h2>How AI Is Completely Changing the Way African Businesses Market Themselves in 2025</h2>
+      <p>The businesses winning right now aren't the biggest — they're the ones using AI to move faster, personalise better, and convert smarter. Here's exactly how to get on the right side of that shift.</p>
+      <div class="post-meta">
+        <span><i class="ri-user-line"></i> OEA Global Team</span>
+        <span><i class="ri-calendar-line"></i> March 2025</span>
+        <span><i class="ri-time-line"></i> 8 min read</span>
+      </div>
+      <a href="#" class="read-more">Read Full Article <i class="ri-arrow-right-line"></i></a>
+    </div>
+  </article>
+
+  <!-- LATEST POSTS -->
+  <h2 class="blog-section-title" data-aos="fade-up">Latest Articles</h2>
+
+  <div class="blog-grid">
+
+    <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="blog-card__image">
+        <div class="img-placeholder grad-2">📈</div>
+        <span class="card-category-badge badge-red">Paid Ads</span>
+      </div>
+      <div class="blog-card__content">
+        <h3>Why Your Meta Ads Are Burning Money (And the 3-Step Fix That Actually Works)</h3>
+        <p>Most businesses waste 60% of their ad budget on audiences that will never buy. We break down the targeting mistakes costing you and how to fix them this week.</p>
+        <div class="card-footer">
+          <div class="post-meta">
+            <span><i class="ri-calendar-line"></i> Feb 2025</span>
+          </div>
+          <span class="card-read-time"><i class="ri-time-line"></i> 6 min</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="blog-card__image">
+        <div class="img-placeholder grad-3">🔍</div>
+        <span class="card-category-badge badge-purple">SEO</span>
+      </div>
+      <div class="blog-card__content">
+        <h3>The SEO Playbook for Nigerian Businesses: Rank on Google Without Spending a Kobo on Ads</h3>
+        <p>Local search is one of the most underused growth channels for African businesses. Here's the step-by-step framework we use to get clients ranking in 90 days.</p>
+        <div class="card-footer">
+          <div class="post-meta">
+            <span><i class="ri-calendar-line"></i> Jan 2025</span>
+          </div>
+          <span class="card-read-time"><i class="ri-time-line"></i> 10 min</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="blog-card__image">
+        <div class="img-placeholder grad-4">⚙️</div>
+        <span class="card-category-badge badge-green">Automation</span>
+      </div>
+      <div class="blog-card__content">
+        <h3>5 Marketing Automations Every SME Should Set Up Before the End of This Month</h3>
+        <p>These five automations collectively save our clients 20+ hours per week and nurture leads while you sleep. None of them require a developer.</p>
+        <div class="card-footer">
+          <div class="post-meta">
+            <span><i class="ri-calendar-line"></i> Dec 2024</span>
+          </div>
+          <span class="card-read-time"><i class="ri-time-line"></i> 7 min</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="blog-card__image">
+        <div class="img-placeholder grad-5">📱</div>
+        <span class="card-category-badge badge-orange">Social Media</span>
+      </div>
+      <div class="blog-card__content">
+        <h3>How to Build a Content System That Generates Leads on Instagram Without Posting Every Day</h3>
+        <p>Consistency beats frequency every time. We'll show you how to build a content engine that works even when you're not actively creating.</p>
+        <div class="card-footer">
+          <div class="post-meta">
+            <span><i class="ri-calendar-line"></i> Nov 2024</span>
+          </div>
+          <span class="card-read-time"><i class="ri-time-line"></i> 5 min</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="blog-card__image">
+        <div class="img-placeholder grad-6">💰</div>
+        <span class="card-category-badge badge-blue">Business Growth</span>
+      </div>
+      <div class="blog-card__content">
+        <h3>From ₦0 to ₦10M: The Exact Marketing Stack a Lagos Startup Used to Scale in 18 Months</h3>
+        <p>A real breakdown of the channels, tools, and strategies that drove compounding growth for one of our clients — with numbers and timelines included.</p>
+        <div class="card-footer">
+          <div class="post-meta">
+            <span><i class="ri-calendar-line"></i> Oct 2024</span>
+          </div>
+          <span class="card-read-time"><i class="ri-time-line"></i> 12 min</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="blog-card__image">
+        <div class="img-placeholder grad-7">✉️</div>
+        <span class="card-category-badge badge-green">Email Marketing</span>
+      </div>
+      <div class="blog-card__content">
+        <h3>Email Is Not Dead — You're Just Doing It Wrong. Here's How to Make It Your #1 Revenue Channel</h3>
+        <p>Email marketing delivers the highest ROI of any digital channel when done right. We show you the exact sequences and segmentation strategies that print money.</p>
+        <div class="card-footer">
+          <div class="post-meta">
+            <span><i class="ri-calendar-line"></i> Sep 2024</span>
+          </div>
+          <span class="card-read-time"><i class="ri-time-line"></i> 9 min</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter" data-aos="fade-up">
+    <h3>Get Growth Insights in Your Inbox</h3>
+    <p>Join 2,000+ business owners getting weekly strategies, AI marketing tips, and growth frameworks — free.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Enter your email address">
+      <button class="btn-white">Subscribe Free</button>
+    </div>
+  </div>
+
+  <!-- LOAD MORE -->
+  <div class="load-more-wrap" data-aos="fade-up">
+    <button class="btn-outline"><i class="ri-refresh-line"></i> Load More Articles</button>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section__container footer__container" style="max-width:1200px;">
+    <div class="footer__col">
+      <div class="footer__logo"><h2>OEA Global</h2></div>
+      <p class="section__description">We build and operate AI-powered marketing systems that help businesses attract customers, increase revenue, and scale with clarity and confidence.</p>
+      <div class="footer__socials">
+        <a href="https://www.facebook.com/share/17YoTxSUCh/"><i class="ri-facebook-fill"></i></a>
+        <a href="#"><i class="ri-twitter-fill"></i></a>
+        <a href="https://www.instagram.com/oea.global"><i class="ri-instagram-line"></i></a>
+        <a href="#"><i class="ri-linkedin-fill"></i></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>Quick Links</h4>
+      <ul class="footer__links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li><a href="/Contact-us">Contact Us</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Services</h4>
+      <ul class="footer__links">
+        <li><a href="#">Growth Partner Program</a></li>
+        <li><a href="#">Marketing Strategy</a></li>
+        <li><a href="#">AI-Powered Marketing</a></li>
+        <li><a href="#">Revenue Engine</a></li>
+        <li><a href="#">Performance Marketing</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Contact Us</h4>
+      <ul class="footer__links">
+        <li><a href="#"><span><i class="ri-phone-fill"></i></span> 0810555585</a></li>
+        <li><a href="#"><span><i class="ri-mail-fill"></i></span> main.oeaglobal@gmail.com</a></li>
+        <li><a href="#"><span><i class="ri-map-pin-2-fill"></i></span> PortHarcourt, Rivers State, Nigeria</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bar">Copyright &copy; 2026 OEA Global. All rights reserved.</div>
+</footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1000, once: true, offset: 100 });
+
+// Nav menu
+const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
+const menuBtnIcon = menuBtn.querySelector("i");
+menuBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  navLinks.classList.toggle("open");
+  menuBtnIcon.setAttribute("class", navLinks.classList.contains("open") ? "ri-close-line" : "ri-menu-line");
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove("open");
+    menuBtnIcon.setAttribute("class", "ri-menu-line");
+  });
+});
+document.addEventListener('click', (e) => {
+  if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) {
+    navLinks.classList.remove("open");
+    menuBtnIcon.setAttribute("class", "ri-menu-line");
+  }
+});
+
+// Category filters
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
